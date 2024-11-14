@@ -1,31 +1,39 @@
+using Script.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(CheckDirection)), RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rb;
-    PlayerControl playerControl;
-    Animator animator;
-    CheckDirection checkDirection;
-    AudioSource jumpSound;
-    [SerializeField] private ParticleSystem dustStep;
-    private Vector2 movement;
-
-    public GameObject projectile;
-    public Transform projectilePos;
-    public uint cherry = 0;
-
     [Header("Setting")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private ParticleSystem dustStep;
+    
+    [Space(5), Header("Projectile Settings")]
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform projectilePos;
+    [SerializeField] private Transform projectileParent;
+    
+    private Rigidbody2D rb;
+    private Animator animator;
+    private CheckDirection checkDirection;
+    private AudioSource jumpSound;
+    private PlayerTouchController playerTouchController;
 
+    private Vector2 movement;
+    private byte cherry = 0;
     private bool _isRunning = false;
     private bool _isFacingRight = true;
-    public Transform projectileParent;
 
     #region Properties
 
+    public byte Cherry
+    {
+        get => cherry;
+        set => cherry = value;
+    }
+    
     public bool IsRunning { 
         get{
             return _isRunning;
@@ -54,41 +62,28 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         checkDirection = GetComponent<CheckDirection>();
         dustStep = GetComponentInChildren<ParticleSystem>();
-        playerControl = new PlayerControl();
         jumpSound = GetComponentInChildren<AudioSource>();
-   }
+        playerTouchController = GetComponent<PlayerTouchController>();
+    }
 
    private void FixedUpdate() {
-        Movement();
+       IsRunning = playerTouchController.MoveLeftButtonClicked ? true : (playerTouchController.MoveRightButtonClicked ? true : false);
+       if (!IsRunning)
+       {
+           return;
+       }
+       else
+       {
+           movement = new Vector2(playerTouchController.MoveLeftButtonClicked ? -1 : (playerTouchController.MoveRightButtonClicked ? 1 : 0), movement.y);
+           rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
+           Debug.Log("Update Touch");
+       }
         if(IsRunning && checkDirection.IsGrounded)
             dustStep.Play();
    }
 
-    private void Movement()
-    {
-        rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
-    }
-
-    #region ActionMap Handle
-    private void OnEnable() {
-        playerControl.Player.Enable();
-    }
-
-    private void OnDisable() {
-        playerControl.Player.Disable();
-    }
-    #endregion
-
 
     #region InputHandle
-    public void OnMove(InputAction.CallbackContext ctx){
-        movement = ctx.ReadValue<Vector2>();
-
-        IsRunning = movement != Vector2.zero;
-
-        FlipDirection(movement);
-    }
-
     public void OnJump(InputAction.CallbackContext ctx){
         if(ctx.started && checkDirection.IsGrounded){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -104,7 +99,7 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
-
+     
     private void FlipDirection(Vector2 moveInput){
         if(moveInput.x > 0 && !IsFacingRight){
             IsFacingRight = true;

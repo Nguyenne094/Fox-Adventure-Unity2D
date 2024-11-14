@@ -12,7 +12,7 @@ public class CherryPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(player){
-            player.cherry++;
+            player.Cherry++;
             sound.gameObject.transform.position = transform.position;
             sound?.Stop();
             sound?.Play();
