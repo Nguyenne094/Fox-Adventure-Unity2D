@@ -1,4 +1,5 @@
 using Script.Player;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
        else
        {
            movement = new Vector2(playerTouchController.MoveLeftButtonClicked ? -1 : (playerTouchController.MoveRightButtonClicked ? 1 : 0), movement.y);
+           FlipDirection(movement);
            rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
            Debug.Log("Update Touch");
        }
@@ -84,18 +86,19 @@ public class Player : MonoBehaviour
 
 
     #region InputHandle
-    public void OnJump(InputAction.CallbackContext ctx){
-        if(ctx.started && checkDirection.IsGrounded){
+    public void OnJump(){
+        if(checkDirection.IsGrounded){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             jumpSound?.Stop();
             jumpSound?.Play();
         }
     }
 
-    public void OnFire(InputAction.CallbackContext ctx){
-        if(ctx.started && cherry > 0){
+    public void OnFire(){
+        if(cherry > 0){
             Instantiate(projectile, projectilePos.position, projectilePos.rotation, projectileParent);
             cherry--;
+            EditorApplication.isPaused = true;
         }
     }
     #endregion

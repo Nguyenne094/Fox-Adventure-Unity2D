@@ -23,6 +23,8 @@ public class ItemThrow : MonoBehaviour
         if(damageable && other.CompareTag("Enemy")){
             damageable.Hit(damage);
         }
+
+        Debug.Log(other.gameObject.name);
         Destroy(gameObject);
     }
 }

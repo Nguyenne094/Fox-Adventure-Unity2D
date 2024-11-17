@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1809961705321356245}
   - component: {fileID: 2714096887432722146}
   - component: {fileID: 3179529260547417963}
-  - component: {fileID: 8879557281696398632}
   - component: {fileID: 525042582515791686}
   - component: {fileID: 5513421597257879506}
   - component: {fileID: 849010062375988157}
+  - component: {fileID: 6602127498035573431}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -185,132 +185,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8879557281696398632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821081960701230189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 90518845a78dbec43a72e236cadb291b, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 525042582515791686}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a7fc7164-6a66-4f74-aa01-66a02fdb08d8
-    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 50555490-143b-48ce-9586-4bbc9b98e577
-    m_ActionName: 'Player/Look[/Mouse/delta]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 525042582515791686}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: dec9515f-a807-43da-8114-fc0774378ca4
-    m_ActionName: 'Player/Fire[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 525042582515791686}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d445b39f-ccb7-4b5e-b569-bcf2bb71cb33
-    m_ActionName: 'Player/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 156e9066-ae6d-46eb-9d37-9417e63964b0
-    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4c070fd0-e906-4055-8bca-1aee6b4c78c5
-    m_ActionName: 'UI/Submit[/Keyboard/enter]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5a203d47-c592-4d4b-b427-e89b88e45362
-    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 14d0bbba-6d43-484e-9ffb-02df0f7c85e9
-    m_ActionName: 'UI/Point[/Mouse/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 21babff8-3bd5-4151-8804-63ecc84b113a
-    m_ActionName: 'UI/Click[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ea7cc2f5-f2b9-4596-8e09-7414c747f01c
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 29a2dc87-ee06-45df-8798-1fe375378abc
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c113943d-0a06-44a4-a8dd-01340f1c04f2
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7fca334e-a78a-4dff-9c37-3a2e9a370a7e
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 56699c32-a14f-4ef9-8776-70f6d0e38d28
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f2eed632-624d-4d4e-8d3a-ededb6a33293
-    m_ActionName: 'UI/Escape[/Keyboard/escape]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &525042582515791686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,12 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fea4d5d6efdcac44b06c6dfb8ff5208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 6
+  jumpForce: 15
   dustStep: {fileID: 2282438384830233658, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
   projectile: {fileID: 900237408122132982, guid: 50362aed628e71f45b2d538cee22a2b1, type: 3}
   projectilePos: {fileID: 2151680817159000088}
-  cherry: 0
-  speed: 6
-  jumpForce: 15
   projectileParent: {fileID: 0}
 --- !u!114 &5513421597257879506
 MonoBehaviour:
@@ -379,6 +252,22 @@ MonoBehaviour:
   takeDamageSentence: Ouch
   dieSentence: Huhu
   healSentence: "H\xFA"
+--- !u!114 &6602127498035573431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821081960701230189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f2c718d04b42fa968222817632a8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  jumpForce: 10
+  moveRightButtonClicked: 0
+  moveLeftButtonClicked: 0
 --- !u!1 &4927424206047432512
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +547,7 @@ Transform:
   m_GameObject: {fileID: 7211720307786612425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.261, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

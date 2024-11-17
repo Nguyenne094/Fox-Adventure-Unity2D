@@ -62,15 +62,6 @@ public class UIManager : MonoBehaviour
     
 
     #endregion
-
-    #region Control UI
-
-    public void MoveLeft()
-    {
-        
-    }
-
-    #endregion
     
     private void FixedUpdate() {
         cherryCount.text = player.Cherry.ToString();
@@ -91,9 +82,5 @@ public class UIManager : MonoBehaviour
                 SceneManager.LoadScene("QuitScene");
             #endif
         }
-    }
-
-    public void PauseGame(){
-        Time.timeScale = 0;
     }
 }

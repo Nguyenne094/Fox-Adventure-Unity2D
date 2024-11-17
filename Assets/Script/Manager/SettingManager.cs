@@ -9,10 +9,6 @@ public class SettingManager : MonoBehaviour
 
     public float transitionTime = 1f;
 
-    public void OnResume(){
-        Time.timeScale = 1;
-    }
-
     public void ReturnHome(){
         StartCoroutine(LoadHomeScene());
     }

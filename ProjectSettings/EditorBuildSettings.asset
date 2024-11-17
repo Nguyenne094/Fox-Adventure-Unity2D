@@ -5,17 +5,42 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/Level 2.unity
-    guid: 34c5ae90a43ed584c947abb36e099d01
+  - enabled: 1
+    path: Assets/Level/Scenes/Home.unity
+    guid: 51b1ebbeb6a6dc54bb195d343e731c86
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 1.unity
+    guid: 2f4aba83c5213c04e9264defc4ee82a2
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 2.unity
+    guid: 1de8549f4ccff69479732edc40bba3e5
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 3.unity
+    guid: eec9ff0df10169d42897340ed1609104
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 4.unity
+    guid: db62c92d0c8299e43ad97c6cf60f4dcd
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 5.unity
+    guid: 10c54c79cc0ad5c41ad847bf346310b8
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 6.unity
+    guid: f2e556cdc95ae5b438b4cef626141726
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 7.unity
+    guid: 0095de04d3e984f4ea67d9986fe67e15
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 8.unity
+    guid: 897b992b8aa2a29478510c9255f14c64
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 9.unity
+    guid: 8e6152e6020f41e4ca84d77acf787689
+  - enabled: 1
+    path: Assets/Level/Scenes/Level Scenes/Level 10.unity
+    guid: 2f71f96654fb2474f85723281d9e6cb9
   m_configObjects:
-<<<<<<< HEAD
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 7b1d53043675a9b4e81341e25048ec34, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b3e35fb43ce72514ea51272da2f426e6, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7cc2857c6abe76f4ea334b591e60b444, type: 2}
-=======
-    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 3d0ea727eaf507f4fb7847bb99f460e5, type: 2}
->>>>>>> origin/main
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 90518845a78dbec43a72e236cadb291b, type: 3}
   m_UseUCBPForAssetBundles: 0
