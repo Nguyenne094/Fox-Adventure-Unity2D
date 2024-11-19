@@ -1,35 +1,54 @@
+using System;
+using Manager;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
-    Animator animator;
-    public AudioSource sound;
+    [Tooltip("This window will pop up whenever you win"), SerializeField] private GameObject winWindow;
+    [SerializeField] private float degreePerSecond = 5f;
 
-    [Tooltip("This window will pop up whenever you win")]
-    public GameObject winWindow;
+    private Animator animator;
+    private AudioSource audioSource;
 
-    [SerializeField] private float degreePerSecons = 5f;
-
-    private void Awake() {
+    private const string playerTag = "Player";
+    
+    private void Awake()
+    {
         animator = GetComponent<Animator>();
-        sound = GameObject.Find("Win Sound").GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         RotateAround();
     }
 
     private void RotateAround()
     {
-        transform.Rotate(Vector3.up, degreePerSecons);
+        transform.Rotate(Vector3.up, degreePerSecond);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        animator.SetTrigger(AnimationString.isClaimed);
-        sound.gameObject.transform.position = transform.position;
-        sound?.Stop();
-        sound?.Play();
-        winWindow.SetActive(true);
-        Destroy(gameObject, 0.4f);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag(playerTag)){
+            
+            // Trigger claimed animation
+            animator.SetTrigger(AnimationString.isClaimed);
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+                audioSource.Play();
+            }
+
+            // Display win window
+            winWindow.SetActive(true);
+
+            // Invoke the OnPlayerWin event
+            GameManager.Instance.playerWinEventChannel.RaiseEvent();
+
+            // Destroy the gem after a delay
+            Destroy(this.gameObject, 0.4f);
+        }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealPickup : MonoBehaviour
 {
-    private const uint healthRestore = 1;
+    private const int healAmount = 1;
     private AudioSource sound;
 
     private void Awake() {
@@ -10,10 +10,10 @@ public class HealPickup : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Damageable damageable = other.GetComponent<Damageable>();
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
-        if(damageable && damageable.Health != damageable.MaxHealth){
-            damageable.Heal(healthRestore);
+        if(playerHealth && playerHealth.Health != playerHealth.MaxHealth){
+            playerHealth.playerHealChannel.RaiseEvent(healAmount);
             sound.gameObject.transform.position = transform.position;
             sound?.Stop();
             sound?.Play();

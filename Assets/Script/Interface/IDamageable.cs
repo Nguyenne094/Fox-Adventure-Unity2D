@@ -1,9 +1,16 @@
 using System;
 
-interface IDamageable{
-    public uint MaxHealth { get; set; }
-    public uint Health { get; set; }
+interface IDamageable
+{
+    public int Damage { get; set; }
+    public int MaxHealth { get; set; }
+    public int Health { get; }
+    public bool IsAlive { get; }
 
-    public void Hit(uint damage);
+    /// <summary>
+    /// Just for playing take damage effect, not for logic
+    /// </summary>
+    public void TakeDamage(float direction);
+
     public void Die();
 }

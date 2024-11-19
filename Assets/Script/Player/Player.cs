@@ -1,3 +1,5 @@
+using System;
+using Nguyen.Event;
 using Script.Player;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform projectilePos;
     [SerializeField] private Transform projectileParent;
+    
+    [Space(5), Header("Player Get Hit Settings")]
+    [SerializeField] private Vector2 hitForceVector = new Vector2(2, 4);
     
     private Rigidbody2D rb;
     private Animator animator;
@@ -67,7 +72,7 @@ public class Player : MonoBehaviour
         playerTouchController = GetComponent<PlayerTouchController>();
     }
 
-   private void FixedUpdate() {
+    private void FixedUpdate() {
        IsRunning = playerTouchController.MoveLeftButtonClicked ? true : (playerTouchController.MoveRightButtonClicked ? true : false);
        if (!IsRunning)
        {
@@ -78,11 +83,15 @@ public class Player : MonoBehaviour
            movement = new Vector2(playerTouchController.MoveLeftButtonClicked ? -1 : (playerTouchController.MoveRightButtonClicked ? 1 : 0), movement.y);
            FlipDirection(movement);
            rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
-           Debug.Log("Update Touch");
        }
         if(IsRunning && checkDirection.IsGrounded)
             dustStep.Play();
    }
+
+    private void LateUpdate()
+    {
+        animator.SetFloat(AnimationString.yVelocity, rb.linearVelocity.y);
+    }
 
 
     #region InputHandle
@@ -91,6 +100,7 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             jumpSound?.Stop();
             jumpSound?.Play();
+            animator.SetTrigger(AnimationString.isJumping);
         }
     }
 
@@ -98,7 +108,6 @@ public class Player : MonoBehaviour
         if(cherry > 0){
             Instantiate(projectile, projectilePos.position, projectilePos.rotation, projectileParent);
             cherry--;
-            EditorApplication.isPaused = true;
         }
     }
     #endregion

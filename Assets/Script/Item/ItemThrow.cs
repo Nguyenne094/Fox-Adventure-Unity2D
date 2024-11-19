@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ItemThrow : MonoBehaviour
 {
-    Rigidbody2D rb;
     [SerializeField] private float fireSpeed = 2f;
-    Player player;
-
-    private uint damage = 1;
+    
+    private Player player;
+    private Rigidbody2D rb;
+    private byte damage = 1;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -18,10 +18,10 @@ public class ItemThrow : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Damageable damageable = other.GetComponent<Damageable>();
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
-        if(damageable && other.CompareTag("Enemy")){
-            damageable.Hit(damage);
+        if(playerHealth){
+            playerHealth.TakeDamage(damage);
         }
 
         Debug.Log(other.gameObject.name);

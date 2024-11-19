@@ -17,9 +17,9 @@ TagManager:
   - Player
   - Enemy
   - Player's Projectile
-  - 
-  - 
-  - 
+  - Player Hit Box
+  - Enemy Hit Box
+  - Ground
   - 
   - 
   - 

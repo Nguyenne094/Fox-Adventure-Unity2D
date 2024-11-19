@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private Player player;
-    [SerializeField] private Damageable playerHealth;
+    [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Canvas gameCanvas;
     [SerializeField] private GameObject damageTextPrefab;
     [SerializeField] private GameObject healthTextPrefab;
@@ -30,13 +30,11 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CharacterEvent.characterDamaged += CharacterTookDamage;
-        CharacterEvent.characterHealed += CharacterHealed;
+
     }
 
     private void OnDisable() {
-        CharacterEvent.characterDamaged -= CharacterTookDamage;
-        CharacterEvent.characterHealed -= CharacterHealed;
+
     }
 
     #region Heath UI

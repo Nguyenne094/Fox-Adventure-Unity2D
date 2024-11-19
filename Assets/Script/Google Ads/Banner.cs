@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
 
@@ -11,17 +12,19 @@ public class Banner : MonoBehaviour
         {
             // This callback is called once the MobileAds SDK is initialized.
         });
+        
+        LoadAd();
     }
     
     
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
-    private string _adUnitId = "ca-app-pub-7876825000881029~9242215216";
+    private string _adUnitId = "ca-app-pub-7876825000881029/6514612544";
 #else
   private string _adUnitId = "unused";
 #endif
 
-    BannerView _bannerView;
+    private BannerView _bannerView;
 
     /// <summary>
     /// Creates a 320x50 banner view at top of the screen.
@@ -37,9 +40,20 @@ public class Banner : MonoBehaviour
         }
 
         // Create a 320x50 banner at top of the screen
-        _bannerView = new BannerView(_adUnitId, AdSize.Banner, AdPosition.Top);
-        
-        
+        _bannerView = new BannerView(_adUnitId, AdSize.Leaderboard, AdPosition.Top);
+    }
+    
+    /// <summary>
+    /// Creates the banner view and loads a banner ad.
+    /// </summary>
+    public void LoadAd()
+    {
+        // create an instance of a banner view first.
+        if(_bannerView == null)
+        {
+            CreateBannerView();
+        }
+
         // create our request used to load the ad.
         var adRequest = new AdRequest();
 
