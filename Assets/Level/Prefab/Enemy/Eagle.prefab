@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2021873871
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f240dfd4814d34d55a9b033f3c9d8a60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -192,7 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFacingLeft: 1
-  _speed: 0.002
+  spawnRange: 3
+  _speed: 0.01
 --- !u!114 &1112277722610922418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,13 +207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  _maxHealth: 3
-  _damage: 1
+  _maxHealth: 1
   hurtedByLayer:
     serializedVersion: 2
     m_Bits: 256
-  _isAlive: 1
-  hitForceVector: {x: 2, y: 4}
+  hitForce: 1
 --- !u!1 &7003861511468514109
 GameObject:
   m_ObjectHideFlags: 0

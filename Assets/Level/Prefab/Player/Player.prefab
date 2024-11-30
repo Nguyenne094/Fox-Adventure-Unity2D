@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5513421597257879506}
   - component: {fileID: 849010062375988157}
   - component: {fileID: 6602127498035573431}
+  - component: {fileID: 613677940139487385}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -41,7 +42,6 @@ Transform:
   - {fileID: 2151680817159000088}
   - {fileID: 4162225387294727614}
   - {fileID: 5016126662198151723}
-  - {fileID: 4256801224676785445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4560199301492118026
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -377433
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c123c318507c6405a869f2f89068cf06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -206,13 +206,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fea4d5d6efdcac44b06c6dfb8ff5208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persist: 0
   speed: 6
   jumpForce: 15
-  dustStep: {fileID: 2282438384830233658, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
-  projectile: {fileID: 900237408122132982, guid: 50362aed628e71f45b2d538cee22a2b1, type: 3}
-  projectilePos: {fileID: 2151680817159000088}
+  _dustStep: {fileID: 4162225387294727608}
+  projectilePrefab: {fileID: 900237408122132982, guid: 50362aed628e71f45b2d538cee22a2b1, type: 3}
+  projectileSpawnPoint: {fileID: 2151680817159000088}
   projectileParent: {fileID: 0}
-  hitForceVector: {x: 2, y: 4}
 --- !u!114 &5513421597257879506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,15 +254,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5a3a164d0b3c64093f6fd5a3bb8054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _health: 0
-  invincibleTime: 0.25
-  destroyTime: 0.5
+  damagedAudioClip: {fileID: 8300000, guid: c94370d0c4db4cd43926e5db11a9b6e0, type: 3}
+  invincibleTime: 0.5
+  destroyTime: 3
   normalizedHitVector: {x: 2, y: 4}
   hitForce: 10
   playerTakeDamageChannel: {fileID: 11400000, guid: e982787d8508fc4498f95eb63c0ae679, type: 2}
   playerHealChannel: {fileID: 11400000, guid: 77ab7e69e9cebdc4c8e709d727301dca, type: 2}
-  playerDieChannel: {fileID: 11400000, guid: e6fbe59711071ec48a3c983d8e1ef06f, type: 2}
+  playerDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &6602127498035573431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +290,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRightButtonClicked: 0
   moveLeftButtonClicked: 0
+--- !u!114 &613677940139487385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821081960701230189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230bed329c344a859e0020d4fae97ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cherryTMP: {fileID: 0}
+  heartTMP: {fileID: 0}
 --- !u!1 &4927424206047432512
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +376,7 @@ AudioSource:
   m_GameObject: {fileID: 6739412933747387683}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6976337562098136323, guid: bdbcbd2fbe06b874caa528d79243e58a, type: 2}
   m_audioClip: {fileID: 8300000, guid: d76c03294994ef64a816d51abad4fa7b, type: 3}
   m_Resource: {fileID: 8300000, guid: d76c03294994ef64a816d51abad4fa7b, type: 3}
   m_PlayOnAwake: 1
@@ -528,40 +555,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5901a6e4c79846ba768a93bf7af67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCollider: []
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   groundDistance: 1
   _haveGround: 0
---- !u!1 &7211720307786612425
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4256801224676785445}
-  m_Layer: 6
-  m_Name: Camera Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4256801224676785445
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7211720307786612425}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.261, y: 0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2496885849782280832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2769687871262892418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,6 +656,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
+--- !u!198 &4162225387294727608 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2282438384830233658, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
+  m_PrefabInstance: {fileID: 2769687871262892418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4162225387294727614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2282438384830233660, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}

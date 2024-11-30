@@ -18,8 +18,16 @@ MonoBehaviour:
   m_PlatformId: b9b35072a6f44c2e863f17467ea3dc13
   m_PlatformBuildProfile:
     rid: 1300047573892988929
-  m_OverrideGlobalSceneList: 0
-  m_Scenes: []
+  m_OverrideGlobalSceneList: 1
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Home.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Level Scene.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Level Scenes/Level 1.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Level Scenes/Level 2.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
@@ -30,11 +38,11 @@ MonoBehaviour:
     - line: '|   AndroidProfiler: 0'
     - line: '|   AndroidFilterTouchesWhenObscured: 0'
     - line: '|   AndroidEnableSustainedPerformanceMode: 0'
-    - line: '|   defaultScreenOrientation: 4'
+    - line: '|   defaultScreenOrientation: 3'
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
-    - line: '|   companyName: DefaultCompany'
+    - line: '|   companyName: Corn'
     - line: '|   productName: Fox Adventure 2D'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
@@ -164,7 +172,9 @@ MonoBehaviour:
     - line: '|   visionOSBundleVersion: 1.0'
     - line: '|   tvOSBundleVersion: 1.0'
     - line: '|   bundleVersion: 1.0'
-    - line: '|   preloadedAssets: []'
+    - line: '|   preloadedAssets:'
+    - line: '|   - {fileID: -944628639613478452, guid: 90518845a78dbec43a72e236cadb291b,
+        type: 3}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -278,17 +288,17 @@ MonoBehaviour:
     - line: '|   templateDefaultScene: Assets/Scenes/SampleScene.unity'
     - line: '|   useCustomMainManifest: 0'
     - line: '|   useCustomLauncherManifest: 0'
-    - line: '|   useCustomMainGradleTemplate: 0'
+    - line: '|   useCustomMainGradleTemplate: 1'
     - line: '|   useCustomLauncherGradleManifest: 0'
     - line: '|   useCustomBaseGradleTemplate: 0'
-    - line: '|   useCustomGradlePropertiesTemplate: 0'
-    - line: '|   useCustomGradleSettingsTemplate: 0'
+    - line: '|   useCustomGradlePropertiesTemplate: 1'
+    - line: '|   useCustomGradleSettingsTemplate: 1'
     - line: '|   useCustomProguardFile: 0'
     - line: '|   AndroidTargetArchitectures: 2'
     - line: '|   AndroidSplashScreenScale: 0'
     - line: '|   androidSplashScreen: {instanceID: 0}'
-    - line: '|   AndroidKeystoreName: '
-    - line: '|   AndroidKeyaliasName: '
+    - line: '|   AndroidKeystoreName: D:/Unity/Unity Keystore/user.keystore'
+    - line: '|   AndroidKeyaliasName: corn'
     - line: '|   AndroidEnableArmv9SecurityFeatures: 0'
     - line: '|   AndroidEnableArm64MTE: 0'
     - line: '|   AndroidBuildApkPerCpuArchitecture: 0'
@@ -297,7 +307,7 @@ MonoBehaviour:
     - line: '|   AndroidEnableTango: 0'
     - line: '|   androidEnableBanner: 1'
     - line: '|   androidUseLowAccuracyLocation: 0'
-    - line: '|   androidUseCustomKeystore: 0'
+    - line: '|   androidUseCustomKeystore: 1'
     - line: '|   m_AndroidBanners:'
     - line: '|   - width: 320'
     - line: '|     height: 180'
@@ -309,7 +319,15 @@ MonoBehaviour:
     - line: '|   AndroidAppBundleSizeToValidate: 150'
     - line: '|   AndroidReportGooglePlayAppDependencies: 1'
     - line: '|   androidSymbolsSizeThreshold: 800'
-    - line: '|   m_BuildTargetIcons: []'
+    - line: '|   m_BuildTargetIcons:'
+    - line: '|   - m_BuildTarget: '
+    - line: '|     m_Icons:'
+    - line: '|     - serializedVersion: 2'
+    - line: '|       m_Icon: {fileID: 2800000, guid: 8bc3c2c2a565342aab778fd8e874313a,
+        type: 3}'
+    - line: '|       m_Width: 128'
+    - line: '|       m_Height: 128'
+    - line: '|       m_Kind: 0'
     - line: '|   m_BuildTargetPlatformIcons:'
     - line: '|   - m_BuildTarget: Android'
     - line: '|     m_Icons:'
@@ -805,7 +823,7 @@ MonoBehaviour:
     - line: '|   qnxGraphicConfPath: '
     - line: '|   apiCompatibilityLevel: 6'
     - line: '|   captureStartupLogs: {}'
-    - line: '|   activeInputHandler: 2'
+    - line: '|   activeInputHandler: 1'
     - line: '|   windowsGamepadBackendHint: 0'
     - line: '|   cloudProjectId: '
     - line: '|   framebufferDepthMemorylessMode: 0'

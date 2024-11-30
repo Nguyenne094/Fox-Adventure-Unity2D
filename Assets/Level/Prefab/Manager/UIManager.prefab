@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9209120600123078888}
-  - component: {fileID: 3566460100626431242}
+  - component: {fileID: 4217384505211602957}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3566460100626431242
+--- !u!114 &4217384505211602957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9058382654257217631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0d9e3ad93e90d47acd38f34ab9c4af, type: 3}
+  m_Script: {fileID: 11500000, guid: 6055d6a9d9b2d1b4d9892d77b44731cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTextPrefab: {fileID: 3155369826732654088, guid: 47566a2fbe478764980e08caed9d0b3b, type: 3}
-  healthTextPrefab: {fileID: 3155369826732654088, guid: a0ada165237d4e94db3766ad1f460917, type: 3}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  gameCanvas: {fileID: 0}
   cherryCount: {fileID: 0}
   heartCount: {fileID: 0}

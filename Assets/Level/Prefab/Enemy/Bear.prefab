@@ -114,8 +114,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7798203234369263584}
   - {fileID: 8656511410456788603}
+  - {fileID: 7798203234369263584}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3600060250109828300
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2021873871
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 05806b63f014ac3449ddae915b77a961, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -314,14 +314,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  _maxHealth: 3
-  _damage: 1
+  _maxHealth: 2
   hurtedByLayer:
     serializedVersion: 2
     m_Bits: 256
-  _isAlive: 1
-  normalizedHitVector: {x: 2, y: 4}
-  hitForce: 3
+  hitForce: 3.5
 --- !u!1 &6568743995153665252
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 6568743995153665252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.071, y: -0.298, z: 0}
+  m_LocalPosition: {x: 0.364, y: -0.298, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -389,7 +386,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.19846696, y: 0.034305982}
+  m_Offset: {x: 0, y: 0.034305982}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -413,6 +410,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5901a6e4c79846ba768a93bf7af67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCollider: []
-  groundDistance: 1
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDistance: 0.5
   _haveGround: 0
