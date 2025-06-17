@@ -71,5 +71,40 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Custom
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === FIREBASE / GOOGLE-SERVICES ===
 google-services.json
+GoogleService-Info.plist
+*.keystore
+
+# === ENV / SECRETS ===
+.env
+*.env
+*.key
+*.pem
+*.cert
+
+# Git-lfs (nếu dùng)
+*.psd
+*.png
+*.fbx
+*.wav
+*.mp4
+*.blend
+
+# === CUSTOM BUILD OUTPUT ===
+Builds/
+bin/
+bin.Debug/
+bin.Release/
+obj/
+
+# === PLUGIN TẠM / DEV ===
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tgz
