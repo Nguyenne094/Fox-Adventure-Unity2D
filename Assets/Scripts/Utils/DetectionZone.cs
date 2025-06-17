@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class DetectionZone : MonoBehaviour
 {
     [SerializeField] private ContactFilter2D contactFilter;
-    private Collider2D collider;
+    private Collider2D col;
     private RaycastHit2D[] groundedHits = new RaycastHit2D[1];
     [SerializeField] private float groundDistance = 1f;
 
@@ -14,12 +14,12 @@ public class DetectionZone : MonoBehaviour
     public bool HaveGround { get => _haveGround; private set => _haveGround = value; }
 
     private void Awake() { 
-        collider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
     }
 
     private void Update()
     {
-        HaveGround = collider.Cast(Vector2.down, contactFilter, groundedHits, groundDistance) > 0;
+        HaveGround = col.Cast(Vector2.down, contactFilter, groundedHits, groundDistance) > 0;
     }
 
     private void OnDrawGizmosSelected()

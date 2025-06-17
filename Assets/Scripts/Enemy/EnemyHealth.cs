@@ -22,7 +22,15 @@ public abstract class EnemyHealth : MonoBehaviour, IDamageable
     public int Damage { get => _damage; set => _damage = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int Health { get => _currentHealth; set => _currentHealth = value; }
-    public bool IsAlive { get => _isAlive; set => _isAlive = value; }
+    public bool IsAlive
+    {
+        get => _isAlive;
+        set
+        {
+            _isAlive = value;
+            _animator.SetBool(AnimationString.isAlive, value);
+        }
+    }
 
     #endregion
 
@@ -54,10 +62,7 @@ public abstract class EnemyHealth : MonoBehaviour, IDamageable
     /// </summary>
     public abstract void TakeDamage(float damage);
 
-    public virtual void Die()
-    {
-        
-    }
+    public abstract void Die();
 
     private void OnTriggerEnter2D(Collider2D other)
     {

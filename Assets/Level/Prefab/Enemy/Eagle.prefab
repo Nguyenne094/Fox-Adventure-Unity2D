@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingLeft: 1
   spawnRange: 3
-  _speed: 0.01
+  _speed: 0.005
 --- !u!114 &1112277722610922418
 MonoBehaviour:
   m_ObjectHideFlags: 0

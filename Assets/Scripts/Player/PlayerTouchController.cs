@@ -14,7 +14,6 @@ namespace Script.Player
 
         public void MoveLeftTouchEnter()
         {
-            Debug.Log("Touch Left Enter");
             moveLeftButtonClicked = true;
         }
 

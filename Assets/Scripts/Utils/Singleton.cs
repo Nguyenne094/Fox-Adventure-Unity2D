@@ -13,10 +13,9 @@ namespace Utils
         {
             get
             {
-                if (_instance == null)
+                if (!_instance)
                 {
                     SetupInstance();
-                    Debug.Log(_instance);
                 }
                 return _instance;
             }
@@ -24,7 +23,7 @@ namespace Utils
 
         public virtual void Awake()
         {
-            RemoveDuplucate();
+            RemoveDuplicate();
             Debug.Log(_instance);
         }
 
@@ -32,7 +31,7 @@ namespace Utils
         {
             _instance = Object.FindFirstObjectByType<T>();
 
-            if (_instance == null)
+            if (!_instance)
             {
                 GameObject gameObj = new GameObject();
                 gameObj.name = typeof(T).Name;
@@ -40,7 +39,7 @@ namespace Utils
             }
         }
 
-        private void RemoveDuplucate()
+        private void RemoveDuplicate()
         {
             if (_instance != null)
             {

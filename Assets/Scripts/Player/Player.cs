@@ -91,7 +91,7 @@ public class Player : Singleton<Player>
 
     private void LateUpdate()
     {
-        _animator.SetFloat(AnimationString.yVelocity, _rb.linearVelocity.x);
+        _animator.SetFloat(AnimationString.yVelocity, _rb.linearVelocity.y);
     }
 
     public void OnJump()

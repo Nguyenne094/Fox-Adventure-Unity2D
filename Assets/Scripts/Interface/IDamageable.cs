@@ -1,5 +1,3 @@
-using System;
-
 interface IDamageable
 {
     public int Damage { get; set; }
