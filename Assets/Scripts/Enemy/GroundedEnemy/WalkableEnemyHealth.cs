@@ -6,18 +6,18 @@
 public class WalkableEnemyHealth : EnemyHealth
 {
     private Animator animator;
-    private CheckDirection checkDirection;
+    private DirectionChecker _directionChecker;
 
     public override void Awake()
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        checkDirection = GetComponent<CheckDirection>();
+        _directionChecker = GetComponent<DirectionChecker>();
     }
 
     public override void TakeDamage(float direction)
     {
-        if (checkDirection.IsGrounded)
+        if (_directionChecker.IsGrounded)
         {
             direction = Mathf.Sign(direction);
             Vector2 force = new Vector2(knockBackDirection.x * -direction, knockBackDirection.y).normalized * hitForce;

@@ -1,7 +1,4 @@
-﻿using System;
-using Nguyen.Event;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using Nguyen.Event;
 using Utils;
 
 namespace Manager

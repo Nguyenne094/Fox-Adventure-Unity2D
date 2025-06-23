@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Utils;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(CheckDirection), typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D), typeof(DirectionChecker), typeof(Animator))]
 public class Player : Singleton<Player>
 {
     [Header("Settings")]
@@ -23,11 +23,11 @@ public class Player : Singleton<Player>
 
     private Rigidbody2D _rb;
     private Animator _animator;
-    private CheckDirection _checkDirection;
+    private DirectionChecker _directionChecker;
     private AudioSource _jumpSound;
     private PlayerTouchController _playerTouchController;
     private PlayerHealth _playerHealth;
-    private PlayerInformationPresenter _playerInformationPresenter;
+    private PlayerPresenter _playerPresenter;
 
     private bool _isRunning = false;
     private bool _isFacingRight = true;
@@ -60,17 +60,17 @@ public class Player : Singleton<Player>
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _checkDirection = GetComponent<CheckDirection>();
+        _directionChecker = GetComponent<DirectionChecker>();
         _dustStep = GetComponentInChildren<ParticleSystem>();
         _jumpSound = GetComponentInChildren<AudioSource>();
         _playerTouchController = GetComponent<PlayerTouchController>();
         _playerHealth = GetComponent<PlayerHealth>();
-        _playerInformationPresenter = GetComponent<PlayerInformationPresenter>();
+        _playerPresenter = GetComponent<PlayerPresenter>();
     }
 
     private void Start()
     {
-        _playerInformationPresenter.Initialize(0, 3);
+        _playerPresenter.Initialize(0, 3);
     }
 
     private void FixedUpdate()
@@ -85,7 +85,7 @@ public class Player : Singleton<Player>
             FlipDirection(horizontalInput);
         }
 
-        if (IsRunning && _checkDirection.IsGrounded)
+        if (IsRunning && _directionChecker.IsGrounded)
             _dustStep.Play();
     }
 
@@ -96,7 +96,7 @@ public class Player : Singleton<Player>
 
     public void OnJump()
     {
-        if (_checkDirection.IsGrounded)
+        if (_directionChecker.IsGrounded)
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             _jumpSound?.Stop();
@@ -107,10 +107,10 @@ public class Player : Singleton<Player>
 
     public void OnFire()
     {
-        if (_playerInformationPresenter.HaveCherry())
+        if (_playerPresenter.HaveCherry())
         {
             Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation, projectileParent);
-            _playerInformationPresenter.RemoveCherry();
+            _playerPresenter.RemoveCherry();
         }
     }
 

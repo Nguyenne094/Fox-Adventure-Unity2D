@@ -24,7 +24,6 @@ namespace Utils
         public virtual void Awake()
         {
             RemoveDuplicate();
-            Debug.Log(_instance);
         }
 
         private static void SetupInstance()

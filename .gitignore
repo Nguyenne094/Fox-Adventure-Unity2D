@@ -101,6 +101,7 @@ bin/
 bin.Debug/
 bin.Release/
 obj/
+Firebase/Plugins
 
 # === PLUGIN TẠM / DEV ===
 *.zip
@@ -108,3 +109,6 @@ obj/
 *.7z
 *.tar.gz
 *.tgz
+
+FirebaseCppApp-12_10_0.bundle
+FirebaseCppApp-12_10_0.so

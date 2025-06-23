@@ -12,7 +12,7 @@ public class CherryPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag(playerTag)){
-            other.GetComponent<PlayerInformationPresenter>().CollectCherry();
+            other.GetComponent<PlayerPresenter>().CollectCherry();
             SoundManager.Instance.PlaySFX(clip, volume);
             Destroy(gameObject);
         }

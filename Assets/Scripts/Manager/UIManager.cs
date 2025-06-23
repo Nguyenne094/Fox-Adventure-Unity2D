@@ -1,11 +1,11 @@
-using System;
 using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+using System.Text;
+using Bap.DependencyInjection;
+using Firebase.Auth;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,17 +17,26 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text timerTMPText;
     [SerializeField] private TMP_Text recordTMPText;
 
-    private float elapsedTime = 0;
-    private bool playerWin = false;
+
+    private float elapsedTime;
+    private bool playerWin;
 
     private string keyStringLevel1 = "recordLV1";
     private string keyStringLevel2 = "recordLV2";
     
+    private StringBuilder timerSb = new StringBuilder("Time: ", 10);
+    
     private void Start(){
+        //Set a record level point when data does not exist
         if(!PlayerPrefs.HasKey(keyStringLevel1))
-            PlayerPrefs.SetFloat(keyStringLevel1, float.MaxValue);
+            PlayerPrefs.SetFloat(keyStringLevel1, float.MinValue);
         if(!PlayerPrefs.HasKey(keyStringLevel2))
-            PlayerPrefs.SetFloat(keyStringLevel2, float.MaxValue);
+            PlayerPrefs.SetFloat(keyStringLevel2, float.MinValue);
+
+        if (FirebaseAuth.DefaultInstance.CurrentUser != null)
+        {
+            
+        }
         
         GameManager.Instance.playerLoseEventChannel.OnEventRaised += OnPlayerLose;
         GameManager.Instance.playerWinEventChannel.OnEventRaised += OnPlayerWin;
@@ -57,7 +66,6 @@ public class UIManager : MonoBehaviour
         // TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPos, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
         // tmpText.text = healSentence;
     }
-    
 
     #endregion
 
@@ -69,8 +77,10 @@ public class UIManager : MonoBehaviour
         
             int minutes = Mathf.FloorToInt(elapsedTime / 60f);
             int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        
-            timerTMPText.SetText("Time: " + minutes + ":" + seconds);
+
+            timerSb.Clear();
+            timerSb.AppendFormat("Time: {0}:{1}", minutes, seconds);
+            timerTMPText.SetText(timerSb);
         }   
     }
 

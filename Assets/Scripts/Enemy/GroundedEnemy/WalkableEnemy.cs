@@ -3,15 +3,15 @@ using Nguyen.Event;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CheckDirection))]
+[RequireComponent(typeof(DirectionChecker))]
 [RequireComponent(typeof(WalkableEnemyHealth))]
 public abstract class WalkableEnemy : MonoBehaviour
 {
     [SerializeField] protected float speed = 8f;
 
     private Rigidbody2D rb;
-    private CheckDirection checkDirection;
-    private DetectionZone detectGround;
+    private DirectionChecker _directionChecker;
+    private ZoneDetection zoneDetection;
     private WalkableEnemyHealth enemyHealth;
 
     private Vector2 walkDirectionVector = Vector2.right;
@@ -37,8 +37,8 @@ public abstract class WalkableEnemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        checkDirection = GetComponent<CheckDirection>();
-        detectGround = GetComponentInChildren<DetectionZone>();
+        _directionChecker = GetComponent<DirectionChecker>();
+        zoneDetection = GetComponentInChildren<ZoneDetection>();
         enemyHealth = GetComponent<WalkableEnemyHealth>();
     }
 
@@ -50,8 +50,8 @@ public abstract class WalkableEnemy : MonoBehaviour
 
     protected void FlipDirection()
     {
-        if ((checkDirection.IsGrounded && checkDirection.IsOnWall) ||
-            (checkDirection.IsGrounded && !detectGround.HaveGround))
+        if ((_directionChecker.IsGrounded && _directionChecker.IsOnWall) ||
+            (_directionChecker.IsGrounded && !zoneDetection.HaveGround))
         {
             WalkDirection = WalkDirection == WalkableDirection.Right
                 ? WalkableDirection.Left
