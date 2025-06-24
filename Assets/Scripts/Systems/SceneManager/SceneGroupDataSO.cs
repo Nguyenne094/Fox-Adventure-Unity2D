@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "NewSceneGroupDataName", menuName = "SceneGroupData/Create NewSceneGroupData", order = 0)]
 public class SceneGroupDataSO : ScriptableObject

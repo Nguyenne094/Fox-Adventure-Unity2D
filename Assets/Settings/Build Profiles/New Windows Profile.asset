@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: "New Android\u2122 Profile"
+  m_Name: New Windows Profile
   m_EditorClassIdentifier: 
   m_AssetVersion: 1
-  m_BuildTarget: 13
-  m_Subtarget: 0
-  m_PlatformId: b9b35072a6f44c2e863f17467ea3dc13
+  m_BuildTarget: 19
+  m_Subtarget: 2
+  m_PlatformId: 4e3c793746204150860bf175a9a41a05
   m_PlatformBuildProfile:
-    rid: 1300047573892988929
+    rid: 1247690046168629248
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/Level/Scenes/Level Scenes/Level 1.unity
-  - m_enabled: 1
     m_path: Assets/Level/Scenes/Base.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Main Menu.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Level Scene.unity
+  - m_enabled: 1
+    m_path: Assets/Level/Scenes/Level Scenes/Level 1.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
@@ -34,11 +38,11 @@ MonoBehaviour:
     - line: '|   AndroidProfiler: 0'
     - line: '|   AndroidFilterTouchesWhenObscured: 0'
     - line: '|   AndroidEnableSustainedPerformanceMode: 0'
-    - line: '|   defaultScreenOrientation: 3'
+    - line: '|   defaultScreenOrientation: 2'
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
-    - line: '|   companyName: Corn'
+    - line: '|   companyName: corn'
     - line: '|   productName: Fox Adventure 2D'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
@@ -47,7 +51,7 @@ MonoBehaviour:
     - line: '|   m_ShowUnitySplashScreen: 1'
     - line: '|   m_ShowUnitySplashLogo: 1'
     - line: '|   m_SplashScreenOverlayOpacity: 1'
-    - line: '|   m_SplashScreenAnimation: 1'
+    - line: '|   m_SplashScreenAnimation: 2'
     - line: '|   m_SplashScreenLogoStyle: 1'
     - line: '|   m_SplashScreenDrawMode: 0'
     - line: '|   m_SplashScreenBackgroundAnimationZoom: 1'
@@ -66,11 +70,14 @@ MonoBehaviour:
     - line: '|     y: 0'
     - line: '|     width: 1'
     - line: '|     height: 1'
-    - line: '|   m_SplashScreenLogos: []'
+    - line: '|   m_SplashScreenLogos:'
+    - line: '|   - logo: {fileID: 21300000, guid: e1f6b41a9b7371144902ae19060185d1,
+        type: 3}'
+    - line: '|     duration: 2'
     - line: '|   m_VirtualRealitySplashScreen: {instanceID: 0}'
     - line: '|   m_HolographicTrackingLossScreen: {instanceID: 0}'
-    - line: '|   defaultScreenWidth: 1920'
-    - line: '|   defaultScreenHeight: 1080'
+    - line: '|   defaultScreenWidth: 960'
+    - line: '|   defaultScreenHeight: 540'
     - line: '|   defaultScreenWidthWeb: 960'
     - line: '|   defaultScreenHeightWeb: 600'
     - line: '|   m_StereoRenderingPath: 0'
@@ -98,7 +105,7 @@ MonoBehaviour:
     - line: '|   androidRenderOutsideSafeArea: 1'
     - line: '|   androidUseSwappy: 1'
     - line: '|   androidBlitType: 0'
-    - line: '|   androidResizeableActivity: 1'
+    - line: '|   androidResizeableActivity: 0'
     - line: '|   androidDefaultWindowWidth: 1920'
     - line: '|   androidDefaultWindowHeight: 1080'
     - line: '|   androidMinimumWindowWidth: 400'
@@ -106,10 +113,10 @@ MonoBehaviour:
     - line: '|   androidFullscreenMode: 1'
     - line: '|   androidAutoRotationBehavior: 1'
     - line: '|   androidPredictiveBackSupport: 0'
-    - line: '|   androidApplicationEntry: 2'
+    - line: '|   androidApplicationEntry: 1'
     - line: '|   defaultIsNativeResolution: 1'
     - line: '|   macRetinaSupport: 1'
-    - line: '|   runInBackground: 0'
+    - line: '|   runInBackground: 1'
     - line: '|   muteOtherAudioSources: 0'
     - line: '|   Prepare IOS For Recording: 0'
     - line: '|   Force IOS Speakers When Recording: 0'
@@ -133,7 +140,7 @@ MonoBehaviour:
     - line: '|   xboxEnableFitness: 0'
     - line: '|   visibleInBackground: 1'
     - line: '|   allowFullscreenSwitch: 1'
-    - line: '|   fullscreenMode: 1'
+    - line: '|   fullscreenMode: 3'
     - line: '|   xboxSpeechDB: 0'
     - line: '|   xboxEnableHeadOrientation: 0'
     - line: '|   xboxEnableGuest: 0'
@@ -171,10 +178,6 @@ MonoBehaviour:
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: -944628639613478452, guid: 90518845a78dbec43a72e236cadb291b,
         type: 3}'
-    - line: '|   - {fileID: 6405733846849553543, guid: b3e35fb43ce72514ea51272da2f426e6,
-        type: 2}'
-    - line: '|   - {fileID: 11400000, guid: 7b1d53043675a9b4e81341e25048ec34, type:
-        2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -196,7 +199,7 @@ MonoBehaviour:
     - line: '|   androidMaxAspectRatio: 2.4'
     - line: '|   androidMinAspectRatio: 1'
     - line: '|   applicationIdentifier:'
-    - line: '|     Android: com.corn.foxadventure'
+    - line: '|     Android: com.corn094'
     - line: '|     Standalone: com.DefaultCompany.2D-URP'
     - line: '|   buildNumber:'
     - line: '|     Standalone: 0'
@@ -205,8 +208,8 @@ MonoBehaviour:
     - line: '|     tvOS: 0'
     - line: '|   overrideDefaultApplicationIdentifier: 1'
     - line: '|   AndroidBundleVersionCode: 1'
-    - line: '|   AndroidMinSdkVersion: 23'
-    - line: '|   AndroidTargetSdkVersion: 0'
+    - line: '|   AndroidMinSdkVersion: 35'
+    - line: '|   AndroidTargetSdkVersion: 35'
     - line: '|   AndroidPreferredInstallLocation: 1'
     - line: '|   aotOptions: '
     - line: '|   stripEngineCode: 1'
@@ -324,7 +327,7 @@ MonoBehaviour:
     - line: '|   - m_BuildTarget: '
     - line: '|     m_Icons:'
     - line: '|     - serializedVersion: 2'
-    - line: '|       m_Icon: {fileID: 2800000, guid: 8bc3c2c2a565342aab778fd8e874313a,
+    - line: '|       m_Icon: {fileID: 2800000, guid: e1f6b41a9b7371144902ae19060185d1,
         type: 3}'
     - line: '|       m_Width: 128'
     - line: '|       m_Height: 128'
@@ -523,7 +526,10 @@ MonoBehaviour:
     - line: '|   m_BuildTargetShaderSettings: []'
     - line: '|   m_BuildTargetGraphicsJobs: []'
     - line: '|   m_BuildTargetGraphicsJobMode: []'
-    - line: '|   m_BuildTargetGraphicsAPIs: []'
+    - line: '|   m_BuildTargetGraphicsAPIs:'
+    - line: '|   - m_BuildTarget: WindowsStandaloneSupport'
+    - line: '|     m_APIs: 0200000012000000'
+    - line: '|     m_Automatic: 0'
     - line: '|   m_BuildTargetVRSettings: []'
     - line: '|   m_DefaultShaderChunkSizeInMB: 16'
     - line: '|   m_DefaultShaderChunkCount: 0'
@@ -542,7 +548,7 @@ MonoBehaviour:
     - line: '|   m_BuildTargetDefaultTextureCompressionFormat:'
     - line: '|   - serializedVersion: 3'
     - line: '|     m_BuildTarget: Android'
-    - line: '|     m_Formats: 01000000'
+    - line: '|     m_Formats: 00000000'
     - line: '|   playModeTestRunnerEnabled: 0'
     - line: '|   runPlayModeTestAsEditModeTest: 0'
     - line: '|   actionOnDotNetUnhandledException: 1'
@@ -957,8 +963,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1300047573892988929
-      type: {class: AndroidPlatformBuildSettings, ns: UnityEditor.Android, asm: UnityEditor.Android.Extensions}
+    - rid: 1247690046168629248
+      type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
       data:
         m_Development: 0
         m_ConnectProfiler: 0
@@ -969,15 +975,11 @@ MonoBehaviour:
         m_ExplicitNullChecks: 0
         m_ExplicitDivideByZeroChecks: 0
         m_ExplicitArrayBoundsChecks: 0
-        m_CompressionType: 2
+        m_CompressionType: 0
         m_InstallInBuildFolder: 0
-        m_BuildSubtarget: 0
-        m_BuildSystem: 1
-        m_ExportAsGoogleAndroidProject: 0
-        m_DebugSymbolLevel: 1
-        m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: __builtin__target_default
-        m_BuildType: 2
-        m_BuildAppBundle: 0
-        m_IPAddressToConnect: 
-        m_SymlinkSources: 0
+        m_WindowsBuildAndRunDeployTarget: 0
+        m_Architecture: 0
+        m_CreateSolution: 0
+        m_CopyPDBFiles: 0
+        m_WindowsDevicePortalAddress: 
+        m_WindowsDevicePortalUsername: 

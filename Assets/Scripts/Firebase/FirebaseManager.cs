@@ -13,8 +13,9 @@ public class FirebaseManager : Singleton<FirebaseManager>
     [Provide]
     public FirebaseManager Provide() => this;
     
-    void Start()
+    public override void Awake()
     {
+        base.Awake();
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
             if (task.Result == DependencyStatus.Available)
             {

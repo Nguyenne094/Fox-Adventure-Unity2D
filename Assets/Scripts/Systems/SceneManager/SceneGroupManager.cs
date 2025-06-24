@@ -8,8 +8,6 @@ using Nguyen.Event;
 
 public class SceneGroupManager : MonoBehaviour
 {
-    public event Action<string> OnSceneLoaded = delegate {};
-    public event Action<string> OnSceneUnloaded = delegate {};
     public VoidEventChannelSO OnSceneGroupLoaded;
     public VoidEventChannelSO OnSceneGroupUnloaded;
     public SceneGroupDataSO CurrentSceneGroup;
@@ -25,17 +23,17 @@ public class SceneGroupManager : MonoBehaviour
         OnSceneGroupLoaded.OnEventRaised -= () => Debug.Log("[Scene Manager] Scene Group Loaded");
     }
 
-    public async Task LoadSceneGroup(SceneGroupDataSO group, IProgress<float> progress)
+    public async Task LoadSceneGroup(SceneGroupDataSO loadingSceneGroup, IProgress<float> progress)
     {
         SceneGroupLoaded = false;
         
-        if(group.Scenes.Count <= 0)
+        if(loadingSceneGroup.Scenes.Count <= 0)
         {
             Debug.LogError("[Scene Manager] Error: No scenes to load in the SceneGroupDataSO.");
             return;
         }
             
-        await UnloadSceneGroup(group);
+        await UnloadSceneGroup(loadingSceneGroup);
 
         var loadedScene = new List<string>();
 
@@ -44,9 +42,9 @@ public class SceneGroupManager : MonoBehaviour
             loadedScene.Add(SceneManager.GetSceneAt(i).name);
         }
 
-        var operationGroup = new OperationGroup(group.Scenes.Count);
+        var operationGroup = new OperationGroup(loadingSceneGroup.Scenes.Count);
 
-        foreach (var scene in group.Scenes)
+        foreach (var scene in loadingSceneGroup.Scenes)
         {
             if (loadedScene.Contains(scene.SceneName)) continue;
 
@@ -56,7 +54,6 @@ public class SceneGroupManager : MonoBehaviour
 
             asyncOperation.completed += (operation) =>
             {
-                OnSceneLoaded?.Invoke(scene.SceneName);
                 operationGroup.Operations.Remove(asyncOperation);
             };
         }
@@ -67,7 +64,7 @@ public class SceneGroupManager : MonoBehaviour
             await Task.Yield();
         }
 
-        var activeScene = SceneManager.GetSceneByName(group.GetSceneByType(SceneType.Active).SceneName);
+        var activeScene = SceneManager.GetSceneByName(loadingSceneGroup.GetSceneByType(SceneType.Active).SceneName);
         if (activeScene.IsValid())
         {
             SceneManager.SetActiveScene(activeScene);
@@ -77,9 +74,10 @@ public class SceneGroupManager : MonoBehaviour
         {
             OnSceneGroupLoaded?.RaiseEvent();
             SceneGroupLoaded = true;
-            CurrentSceneGroup = group;
+            CurrentSceneGroup = loadingSceneGroup;
         }
-        
+
+        Debug.Log($"{loadingSceneGroup} is Loaded");
     }
 
     public async Task UnloadSceneGroup(SceneGroupDataSO groupSceneToLoad)
@@ -90,14 +88,14 @@ public class SceneGroupManager : MonoBehaviour
         for (int i = 0; i < sceneCount; i++)
         {
             var scene = SceneManager.GetSceneAt(i);
-            if (!scene.isLoaded || groupSceneToLoad.GetSceneByName(scene.name) != null) continue;
+            //If the early scene hasn't loaded or early scene match with the loading scene -> continue
+            if (groupSceneToLoad.GetSceneByName(scene.name) != null) continue;
 
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
             operationGroup.Operations.Add(asyncOperation);
 
             asyncOperation.completed += (operation) =>
             {
-                OnSceneUnloaded?.Invoke(scene.name);
                 operationGroup.Operations.Remove(asyncOperation);
             };
         }
@@ -111,6 +109,8 @@ public class SceneGroupManager : MonoBehaviour
         {
             OnSceneGroupUnloaded?.RaiseEvent();
         }
+
+        Debug.Log("Current scene group is Unloaded");
     }
 }
 

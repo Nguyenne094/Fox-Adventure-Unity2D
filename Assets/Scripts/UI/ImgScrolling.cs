@@ -3,7 +3,10 @@ using UnityEngine.UI;
 
 public class ImgScrolling : MonoBehaviour
 {
-    RawImage img;
+    [SerializeField] private bool _applyX = true;
+    [SerializeField] private bool _applyY = true;
+    
+    private RawImage img;
 
     [SerializeField] float speed = 2f;
 
@@ -12,6 +15,10 @@ public class ImgScrolling : MonoBehaviour
     }
 
     private void Update() {
-        img.uvRect = new Rect(img.uvRect.x + speed * Time.deltaTime, img.uvRect.y + speed * Time.deltaTime, img.uvRect.width, img.uvRect.height);
+        img.uvRect = new Rect(
+            _applyX ? (img.uvRect.x + speed * Time.deltaTime) : img.uvRect.x,
+            _applyY ? (img.uvRect.y + speed * Time.deltaTime) : img.uvRect.y,
+            img.uvRect.width, 
+            img.uvRect.height);
     }
 }

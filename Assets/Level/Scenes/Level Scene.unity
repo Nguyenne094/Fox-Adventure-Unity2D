@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &306691795
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2014,6 +2014,7 @@ GameObject:
   - component: {fileID: 1010226005}
   - component: {fileID: 1010226004}
   - component: {fileID: 1010226003}
+  - component: {fileID: 1010226007}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2106,6 +2107,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1010226007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010226002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e6c01634734341b0c95a6a64df2653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firebaseManager: {fileID: 0}
+  _email: {fileID: 0}
+  _password: {fileID: 0}
+  _confirmPassword: {fileID: 0}
+  _registerSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  _loginSuccess:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1159361992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,7 +2773,6 @@ GameObject:
   - component: {fileID: 1660002287}
   - component: {fileID: 1660002286}
   - component: {fileID: 1660002285}
-  - component: {fileID: 1660002289}
   m_Layer: 5
   m_Name: Return Home - Btn
   m_TagString: Untagged
@@ -2836,13 +2858,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1660002289}
-        m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
-        m_MethodName: ReturnHome
-        m_Mode: 1
+      - m_Target: {fileID: 1010226007}
+        m_TargetAssemblyTypeName: UI.ButtonController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: b5bf6f44cda9ded4d9314a814194d75d, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SceneGroupDataSO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2886,20 +2908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660002283}
   m_CullTransparentMesh: 1
---- !u!114 &1660002289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660002283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbde7c57f0b2b684998123c11a8db686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transition: {fileID: 0}
-  transitionTime: 1
 --- !u!1 &1735370925
 GameObject:
   m_ObjectHideFlags: 0

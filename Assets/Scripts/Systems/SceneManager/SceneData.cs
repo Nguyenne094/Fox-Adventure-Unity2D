@@ -13,5 +13,6 @@ public enum SceneType
 {
     Active,
     UI,
-    Base
+    Base,
+    Additive
 }

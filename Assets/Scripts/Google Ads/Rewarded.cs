@@ -24,7 +24,7 @@ public class Rewarded : MonoBehaviour
         GameManager.Instance.playerWinEventChannel.OnEventRaised += ShowRewardedAd;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         // Unsubscribe events
         GameManager.Instance.playerWinEventChannel.OnEventRaised -= ShowRewardedAd;

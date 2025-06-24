@@ -16,14 +16,13 @@ GameObject:
   - component: {fileID: 5513421597257879506}
   - component: {fileID: 849010062375988157}
   - component: {fileID: 6602127498035573431}
-  - component: {fileID: 7944436460755589869}
+  - component: {fileID: 703319870647157462}
   - component: {fileID: 613677940139487385}
-  - component: {fileID: 9149038960188813203}
-  - component: {fileID: 6343093368249577759}
-  - component: {fileID: 2504679501760891385}
-  - component: {fileID: 7764724911548396100}
+  - component: {fileID: -624499739874212730}
+  - component: {fileID: -7037899996846071295}
+  - component: {fileID: -1141762531406296507}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRightButtonClicked: 0
   moveLeftButtonClicked: 0
---- !u!114 &7944436460755589869
+--- !u!114 &703319870647157462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,14 +286,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3506481184
-  InScenePlacedSourceGlobalObjectIdHash: 3506481184
+  GlobalObjectIdHash: 1951741404
+  InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
+  SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -315,7 +314,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   cherryTMP: {fileID: 0}
   heartTMP: {fileID: 0}
---- !u!114 &9149038960188813203
+--- !u!114 &-624499739874212730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,38 +323,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1821081960701230189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7519faacab0c419baea30b70b4871e1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ff121c9741347588d8c1e06eb61c529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  Persist: 0
-  _rb: {fileID: 3179529260547417963}
-  _animator: {fileID: 1809961705321356245}
-  _directionChecker: {fileID: 5513421597257879506}
-  _jumpSound: {fileID: 5545068693044649442}
-  _playerTouchController: {fileID: 6602127498035573431}
-  _playerHealth: {fileID: 849010062375988157}
-  _playerPresenter: {fileID: 613677940139487385}
-  speed: 10
-  jumpForce: 10
-  _dustStep: {fileID: 4162225387294727608}
-  projectilePrefab: {fileID: 900237408122132982, guid: 50362aed628e71f45b2d538cee22a2b1, type: 3}
-  projectileSpawnPoint: {fileID: 2151680817159000088}
-  projectileParent: {fileID: 0}
---- !u!114 &6343093368249577759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821081960701230189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 0
+  NetworkTransformExpanded: 1
   AutoOwnerAuthorityTickOffset: 1
   PositionInterpolationType: 0
   RotationInterpolationType: 0
@@ -388,7 +360,7 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &2504679501760891385
+--- !u!114 &-7037899996846071295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,29 +369,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1821081960701230189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  NetworkRigidbodyBaseExpanded: 0
-  UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
-  AutoSetKinematicOnDespawn: 1
---- !u!114 &7764724911548396100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821081960701230189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e3d4b846bb41b497ad476f72613d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   TransitionStateInfoList: []
-  m_Animator: {fileID: 1809961705321356245}
+  m_Animator: {fileID: 0}
+--- !u!114 &-1141762531406296507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821081960701230189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7519faacab0c419baea30b70b4871e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  Persist: 0
+  _rb: {fileID: 0}
+  _animator: {fileID: 0}
+  _directionChecker: {fileID: 0}
+  _jumpSound: {fileID: 0}
+  _playerTouchController: {fileID: 0}
+  _playerHealth: {fileID: 0}
+  _playerPresenter: {fileID: 0}
+  speed: 10
+  jumpForce: 10
+  _dustStep: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
+  projectileParent: {fileID: 0}
 --- !u!1 &4927424206047432512
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,11 +758,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
---- !u!198 &4162225387294727608 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2282438384830233658, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
-  m_PrefabInstance: {fileID: 2769687871262892418}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4162225387294727614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2282438384830233660, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}

@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine.UIElements;
 using Firebase.Auth;
+using UnityEngine;
 
 namespace Firebase.Editor
 {
@@ -15,6 +16,16 @@ namespace Firebase.Editor
             _firebaseManager = (FirebaseManager)target;
 
             var root = new VisualElement();
+            
+            var checkbox = new Toggle("Persist");
+            checkbox.value = false;
+
+            checkbox.RegisterValueChangedCallback(evt =>
+            {
+                _firebaseManager.Persist = evt.newValue;
+            });
+
+            root.Add(checkbox);
 
             _userStatusLabel = new Label("Checking user status...");
             root.Add(_userStatusLabel);

@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Text;
-using Bap.DependencyInjection;
 using Firebase.Auth;
+using Network;
 
 public class UIManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerRpc player;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Canvas gameCanvas;
     [SerializeField] private GameObject loseGameObjectUI;
@@ -25,24 +25,26 @@ public class UIManager : MonoBehaviour
     private string keyStringLevel2 = "recordLV2";
     
     private StringBuilder timerSb = new StringBuilder("Time: ", 10);
+
+    public PlayerRpc Player { get => player; set => player = value; }
     
     private void Start(){
         //Set a record level point when data does not exist
-        if(!PlayerPrefs.HasKey(keyStringLevel1))
-            PlayerPrefs.SetFloat(keyStringLevel1, float.MinValue);
-        if(!PlayerPrefs.HasKey(keyStringLevel2))
-            PlayerPrefs.SetFloat(keyStringLevel2, float.MinValue);
-
-        if (FirebaseAuth.DefaultInstance.CurrentUser != null)
-        {
-            
-        }
+        // if(!PlayerPrefs.HasKey(keyStringLevel1))
+        //     PlayerPrefs.SetFloat(keyStringLevel1, float.MinValue);
+        // if(!PlayerPrefs.HasKey(keyStringLevel2))
+        //     PlayerPrefs.SetFloat(keyStringLevel2, float.MinValue);
+        //
+        // if (FirebaseAuth.DefaultInstance.CurrentUser != null)
+        // {
+        //     
+        // }
         
         GameManager.Instance.playerLoseEventChannel.OnEventRaised += OnPlayerLose;
         GameManager.Instance.playerWinEventChannel.OnEventRaised += OnPlayerWin;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.Instance.playerLoseEventChannel.OnEventRaised -= OnPlayerLose;
         GameManager.Instance.playerWinEventChannel.OnEventRaised -= OnPlayerWin;

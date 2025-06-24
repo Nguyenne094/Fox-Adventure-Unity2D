@@ -39,20 +39,7 @@ namespace UI
         
         public async void LoadScene(SceneGroupDataSO sceneGroup)
         {
-            if (sceneGroup == null)
-            {
-                Debug.LogError("SceneGroupData is null");
-                return;
-            }
-
-            await SceneLoader.Instance.LoadSceneGroup(sceneGroup).ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("Failed to load scene group: " + task.Exception);
-                }
-            });
-            await Task.Yield();
+            SceneLoader.Instance.LoadScene(sceneGroup);
         }
     }
 }
