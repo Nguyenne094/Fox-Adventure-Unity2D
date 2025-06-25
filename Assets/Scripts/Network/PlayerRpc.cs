@@ -1,9 +1,9 @@
 ﻿using Manager;
 using Script.Player;
 using UI;
-using Unity.Netcode;
 using UnityEngine;
 using Utils;
+using Unity.Netcode;
 
 namespace Network
 {
@@ -98,6 +98,9 @@ namespace Network
                 _jumpSound?.Stop();
                 _jumpSound?.Play();
                 _animator.SetTrigger(AnimationString.isJumping);
+
+                // Sync jump action
+                SyncJumpServerRpc();
             }
         }
 
@@ -108,6 +111,9 @@ namespace Network
             {
                 Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation, projectileParent);
                 _playerPresenter.RemoveCherry();
+
+                // Sync fire action
+                SyncFireServerRpc();
             }
         }
 
@@ -115,6 +121,32 @@ namespace Network
         {
             if (horizontalInput > 0 && !IsFacingRight) IsFacingRight = true;
             else if (horizontalInput < 0 && IsFacingRight) IsFacingRight = false;
+        }
+
+        [ServerRpc]
+        private void SyncJumpServerRpc()
+        {
+            SyncJumpClientRpc();
+        }
+
+        [ClientRpc]
+        private void SyncJumpClientRpc()
+        {
+            if (IsOwner) return;
+            _animator.SetTrigger(AnimationString.isJumping);
+        }
+
+        [ServerRpc]
+        private void SyncFireServerRpc()
+        {
+            SyncFireClientRpc();
+        }
+
+        [ClientRpc]
+        private void SyncFireClientRpc()
+        {
+            if (IsOwner) return;
+            Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation, projectileParent);
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Text;
 using Firebase.Auth;
+using Firebase.Database;
 using Network;
 
 public class UIManager : MonoBehaviour
@@ -94,38 +95,47 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void SaveLeaderboardToFirebase(string levelKey, float time)
+    {
+        var userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var leaderboardRef = FirebaseDatabase.DefaultInstance.GetReference("Leaderboards").Child(levelKey);
+
+        leaderboardRef.Child(userId).SetValueAsync(new { time = time }).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("Leaderboard updated successfully.");
+            }
+            else
+            {
+                Debug.LogError("Failed to update leaderboard: " + task.Exception);
+            }
+        });
+    }
+
     private void OnPlayerWin()
     {
         playerWin = true;
-        bool currentLevelIsOne = SceneManager.GetActiveScene().buildIndex == 2;
-        if (currentLevelIsOne)
-        {
-            if (PlayerPrefs.GetFloat(keyStringLevel1) > elapsedTime)
-            {
-                PlayerPrefs.SetFloat(keyStringLevel1, elapsedTime);
-            }
-        }
-        else
-        {
-            if (PlayerPrefs.GetFloat(keyStringLevel2) > elapsedTime)
-            {
-                PlayerPrefs.SetFloat(keyStringLevel2, elapsedTime);
-            }
-        }
 
-        if (currentLevelIsOne)
+        string levelKey = SceneLoader.Instance.SceneGroupManager.CurrentSceneGroup.ToString();
+
+        // Lưu thời gian lên Firebase
+        SaveLeaderboardToFirebase(levelKey, elapsedTime);
+
+        // Hiển thị thời gian lên UI
+        recordTMPText.SetText($"Your Time: {elapsedTime:F2} seconds");
+
+        // Cập nhật record local nếu tốt hơn
+        float bestTime = PlayerPrefs.GetFloat(levelKey, float.MaxValue);
+        if (elapsedTime < bestTime)
         {
-            int minutes = Mathf.FloorToInt(PlayerPrefs.GetFloat(keyStringLevel1) / 60f);
-            int seconds = Mathf.FloorToInt(PlayerPrefs.GetFloat(keyStringLevel1) % 60f);
-        
-            recordTMPText.SetText("Record: " + minutes + ":" + seconds);
+            PlayerPrefs.SetFloat(levelKey, elapsedTime);
+            PlayerPrefs.Save();
+            recordTMPText.SetText($"New Record: {elapsedTime:F2} seconds");
         }
         else
         {
-            int minutes = Mathf.FloorToInt(PlayerPrefs.GetFloat(keyStringLevel2) / 60f);
-            int seconds = Mathf.FloorToInt(PlayerPrefs.GetFloat(keyStringLevel2) % 60f);
-        
-            recordTMPText.SetText("Record: " + minutes + ":" + seconds);
+            recordTMPText.SetText($"Your Time: {elapsedTime:F2} seconds\nBest: {bestTime:F2} seconds");
         }
     }
 

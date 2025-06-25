@@ -35,7 +35,6 @@ public class Gem : MonoBehaviour
             
             //Invoke Events
             onCollected?.Invoke();
-            SaveTime();
             GameManager.Instance.playerWinEventChannel.RaiseEvent();
             
             //Other logic
@@ -50,10 +49,5 @@ public class Gem : MonoBehaviour
             // Destroy the gem after a delay
             Destroy(this.gameObject, 0.4f);
         }
-    }
-
-    private void SaveTime()
-    {
-        FirebaseManager.Instance.DbRef.Child("Time").SetValueAsync(100);
     }
 }
