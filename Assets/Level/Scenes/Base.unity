@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Persist: 0
-  _startSceneGroupData: {fileID: 11400000, guid: 6fa7258637edb3f459ee9cdbc68e3912, type: 2}
+  _startSceneGroupData: {fileID: 11400000, guid: b5bf6f44cda9ded4d9314a814194d75d, type: 2}
   _loadingCanvas: {fileID: 441277473}
   _sceneGroupManager: {fileID: 499389704}
 --- !u!1 &1295797264

@@ -1,9 +1,6 @@
-﻿using System;
-using UnityEngine;
-using GoogleMobileAds;
+﻿using UnityEngine;
 using GoogleMobileAds.Api;
 using Manager;
-using Nguyen.Event;
 
 public class Rewarded : MonoBehaviour
 {
@@ -24,12 +21,22 @@ public class Rewarded : MonoBehaviour
         GameManager.Instance.playerWinEventChannel.OnEventRaised += ShowRewardedAd;
     }
 
-    private void OnDisable()
-    {
-        // Unsubscribe events
-        GameManager.Instance.playerWinEventChannel.OnEventRaised -= ShowRewardedAd;
-    }
+        private void OnDisable()
+        {
+            if (GameManager.Instance == null)
+            {
+                Debug.LogError("GameManager.Instance is null");
+                return;
+            }
 
+            if (GameManager.Instance.playerWinEventChannel == null)
+            {
+                Debug.LogError("playerWinEventChannel is null");
+                return;
+            }
+
+            GameManager.Instance.playerWinEventChannel.OnEventRaised -= ShowRewardedAd;
+        }
     private void CreateRewardedAd()
     {
         if (_rewardedAd != null)

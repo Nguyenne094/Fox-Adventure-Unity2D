@@ -2,12 +2,34 @@
   <packages>
     <package>androidx.constraintlayout:constraintlayout:2.1.4</package>
     <package>com.google.android.gms:play-services-ads:23.5.0</package>
+    <package>com.google.android.gms:play-services-base:18.6.0</package>
     <package>com.google.android.ump:user-messaging-platform:3.1.0</package>
+    <package>com.google.firebase:firebase-analytics:22.4.0</package>
+    <package>com.google.firebase:firebase-analytics-unity:12.10.0</package>
+    <package>com.google.firebase:firebase-app-unity:12.10.0</package>
+    <package>com.google.firebase:firebase-auth:23.2.0</package>
+    <package>com.google.firebase:firebase-auth-unity:12.10.0</package>
+    <package>com.google.firebase:firebase-common:21.0.0</package>
+    <package>com.google.firebase:firebase-database:21.0.0</package>
+    <package>com.google.firebase:firebase-database-unity:12.10.0</package>
+    <package>com.google.firebase:firebase-firestore:25.1.3</package>
+    <package>com.google.firebase:firebase-firestore-unity:12.10.0</package>
   </packages>
-  <files />
+  <files>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/12.10.0/firebase-analytics-unity-12.10.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/12.10.0/firebase-analytics-unity-12.10.0.pom</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/12.10.0/firebase-app-unity-12.10.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/12.10.0/firebase-app-unity-12.10.0.pom</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-auth-unity/12.10.0/firebase-auth-unity-12.10.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-auth-unity/12.10.0/firebase-auth-unity-12.10.0.pom</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-database-unity/12.10.0/firebase-database-unity-12.10.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-database-unity/12.10.0/firebase-database-unity-12.10.0.pom</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-firestore-unity/12.10.0/firebase-firestore-unity-12.10.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-firestore-unity/12.10.0/firebase-firestore-unity-12.10.0.pom</file>
+  </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a" />
-    <setting name="bundleId" value="com.Corn.FoxAdventure2D" />
+    <setting name="bundleId" value="com.corn.foxadventure" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />

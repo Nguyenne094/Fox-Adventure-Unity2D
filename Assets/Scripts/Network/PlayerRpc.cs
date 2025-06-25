@@ -89,9 +89,7 @@ namespace Network
 
         public void OnJump()
         {
-            Debug.Log("jump");
             if (!IsOwner) return;
-            Debug.Log("jump");
             if (_directionChecker.IsGrounded)
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
