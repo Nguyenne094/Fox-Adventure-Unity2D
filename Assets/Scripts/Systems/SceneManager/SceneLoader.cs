@@ -26,67 +26,25 @@ public class SceneLoader : Singleton<SceneLoader>
             throw new NullReferenceException("_startSceneGroupData is null. Please fix the error for running correctly.");
         LoadSceneWithoutTransition(_startSceneGroupData);
     }
-    
+
     public async void LoadSceneWithoutTransition(SceneGroupDataSO sceneGroup)
     {
-        if (sceneGroup == null)
+        try
         {
-            Debug.LogError("SceneGroupData is null");
-            return;
-        }
+            await SceneGroupManager.LoadSceneGroup(sceneGroup, new ProgressInformation());
 
-        await LoadSceneGroupWithoutTransition(sceneGroup).ContinueWith(task =>
+        }
+        catch (Exception ex)
         {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("Failed to load scene group: " + task.Exception);
-            }
-        });
+            Debug.LogError("Failed to load scene group: " + ex);
+            throw;
+        }
         await Task.Yield();
     }
     
     public async void LoadScene(SceneGroupDataSO sceneGroup)
     {
-        if (sceneGroup == null)
-        {
-            Debug.LogError("SceneGroupData is null");
-            return;
-        }
-
-        await LoadSceneGroup(sceneGroup).ContinueWith(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("Failed to load scene group: " + task.Exception);
-            }
-        });
-        await Task.Yield();
-    }
-
-    private async Task LoadSceneGroupWithoutTransition(SceneGroupDataSO sceneGroup)
-    {
-        if (sceneGroup == null)
-        {
-            Debug.LogError("[Scene Manager] Error: SceneGroupData is null");
-            return;
-        }
-        
-        await SceneGroupManager.LoadSceneGroup(sceneGroup, new ProgressInformation()); // Load the scene group.
-    }
-
-    /// <summary>
-    /// Loads a scene group asynchronously with progress tracking.
-    /// </summary>
-    /// <param name="sceneGroup">The scene group data to load.</param>
-    private async Task LoadSceneGroup(SceneGroupDataSO sceneGroup)
-    {
         float currentProgress = 0;
-
-        if (sceneGroup == null)
-        {
-            Debug.LogError("[Scene Manager] Error: SceneGroupData is null");
-            return;
-        }
 
         // Tracks the progress of the scene loading process.
         ProgressInformation progress = new ProgressInformation();
@@ -94,8 +52,17 @@ public class SceneLoader : Singleton<SceneLoader>
 
         await EnableCanvas(); // Enable the loading canvas.
         await ImplementLoadingSceneProgress(); // Display loading progress (to be implemented).
-        await SceneGroupManager.LoadSceneGroup(sceneGroup, progress); // Load the scene group.
-        StartCoroutine(DisableCanvas(currentProgress)); //Disable the loading canvas
+        try
+        {
+            await SceneGroupManager.LoadSceneGroup(sceneGroup, progress);
+            
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Failed to load scene group: " + ex);
+            throw;
+        }
+        StartCoroutine(DisableCanvas(currentProgress));
     }
 
     /// <summary>
@@ -103,6 +70,8 @@ public class SceneLoader : Singleton<SceneLoader>
     /// </summary>
     private async Task ImplementLoadingSceneProgress()
     {
+        //TODO: Implement the logic to display loading progress.
+        // This could involve updating a UI element with the current progress value.
         await Task.Delay(0);
     }
 
@@ -124,7 +93,7 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         // Wait for ending loading transition or loading all scenes successfully
         AnimatorClipInfo[] clips = _animator.GetCurrentAnimatorClipInfo(0);
-        float animLength = clips[0].clip.length;
+        float animLength = clips[0].clip ? clips[0].clip.length : 0f;
         // Wait for the longer of animation or scene loading
         float timer = 0f;
         while (timer < animLength || progress < 1)

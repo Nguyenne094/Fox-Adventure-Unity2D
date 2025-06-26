@@ -36,10 +36,5 @@ namespace UI
             if (_firebaseManager.Login(_email.text, _password.text))
                 _loginSuccess.Invoke();
         }
-        
-        public async void LoadScene(SceneGroupDataSO sceneGroup)
-        {
-            SceneLoader.Instance.LoadScene(sceneGroup);
-        }
     }
 }

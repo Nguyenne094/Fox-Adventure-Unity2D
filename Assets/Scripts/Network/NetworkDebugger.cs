@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using Unity.Netcode;
-using UnityEditor;
+﻿using Unity.Netcode;
 using UnityEngine;
 
 namespace Network
@@ -13,6 +10,21 @@ namespace Network
         private void Awake()
         {
             m_NetworkManager = GetComponent<NetworkManager>();
+        }
+
+        void Start()
+        {
+            // Kiểm tra trạng thái mạng khi khởi động
+            if (!m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
+            {
+                // Nếu chưa có host nào, start host
+                m_NetworkManager.StartHost();
+            }
+            else if (m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
+            {
+                // Nếu đã có host/server, start client
+                m_NetworkManager.StartClient();
+            }
         }
 
         private void OnGUI()
@@ -45,6 +57,11 @@ namespace Network
             GUILayout.Label("Transport: " +
                             m_NetworkManager.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
+        }
+
+        public void StopNetwork()
+        {
+            m_NetworkManager.Shutdown();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Utilities
                 var value = field.GetValue(obj);
                 if (value == null)
                 {
-                    Debug.LogError($"{field.Name} is null");
+                    Debug.LogError($"{field.Name} is null in {obj.name}. Please assign it in the inspector.", obj);
                 }
             }
         }

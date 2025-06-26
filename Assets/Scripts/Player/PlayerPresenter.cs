@@ -13,12 +13,6 @@ namespace UI
         public TMP_Text CherryTMP { get => cherryTMP; set => cherryTMP = value; }
         public TMP_Text HeartTMP { get => heartTMP; set => heartTMP = value; }
 
-
-        public override void OnNetworkSpawn()
-        {
-            if (!IsOwner) return;
-        }
-
         public void Initialize(int initialCherry, int maxHealth) 
         {
             _playerModel = new PlayerModel(initialCherry, maxHealth);

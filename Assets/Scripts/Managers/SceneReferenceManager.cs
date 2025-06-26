@@ -24,24 +24,27 @@ namespace Manager
         [SerializeField] private TMP_Text _heartTMP;
         [SerializeField] private UIManager _uiManager;
 
+        public PlayerRpc Player { get; set; }
+
         public override void Awake()
         {
             base.Awake();
             this.CheckNullReferences();
         }
 
-        public void SetupPlayerReference(PlayerRpc player)
+        public void SetupPlayerReference(PlayerRpc playerRpc)
         {
-            _cinemachineCamera.Follow = player.transform;
+            this.Player = playerRpc;
+            _cinemachineCamera.Follow = playerRpc.transform;
 
             //UI
-            _uiManager.Player = player;
+            _uiManager.Player = playerRpc;
 
-            var playerPresenter = player.GetComponent<PlayerPresenter>();
-            var playerTouchController = player.GetComponent<PlayerTouchController>();
+            var playerPresenter = playerRpc.GetComponent<PlayerPresenter>();
+            var playerTouchController = playerRpc.GetComponent<PlayerTouchController>();
 
-            _jumpBtn.onClick.AddListener(player.OnJump);
-            _fireBtn.onClick.AddListener(player.OnFire);
+            _jumpBtn.onClick.AddListener(playerRpc.OnJump);
+            _fireBtn.onClick.AddListener(playerRpc.OnFire);
             playerPresenter.CherryTMP = _cherryTMP;
             playerPresenter.HeartTMP = _heartTMP;
 
@@ -62,6 +65,22 @@ namespace Manager
 
             AddEventTrigger(_moveRightBtn, EventTriggerType.PointerEnter, _ => playerTouchController.MoveRightTouchEnter());
             AddEventTrigger(_moveRightBtn, EventTriggerType.PointerExit, _ => playerTouchController.MoveRightTouchExit());
+        }
+
+        public void ClearPlayerReference()
+        {
+            Player = null;
+            _cinemachineCamera.Follow = null;
+
+            //UI
+            _uiManager.Player = null;
+
+            _jumpBtn.onClick.RemoveAllListeners();
+            _fireBtn.onClick.RemoveAllListeners();
+
+            //Buttons
+            _moveLeftBtn.GetComponent<EventTrigger>()?.triggers.Clear();
+            _moveRightBtn.GetComponent<EventTrigger>()?.triggers.Clear();
         }
     }
 }

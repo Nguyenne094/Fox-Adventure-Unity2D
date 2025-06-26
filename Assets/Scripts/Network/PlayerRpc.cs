@@ -2,12 +2,11 @@
 using Script.Player;
 using UI;
 using UnityEngine;
-using Utils;
 using Unity.Netcode;
 
 namespace Network
 {
-    public class PlayerRpc : NetworkSingleton<PlayerRpc>
+    public class PlayerRpc : NetworkBehaviour
     {
         [Header("References")]
         [SerializeField] private Rigidbody2D _rb;
@@ -17,7 +16,7 @@ namespace Network
         [SerializeField] private PlayerTouchController _playerTouchController;
         [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private PlayerPresenter _playerPresenter;
-        
+
         [Header("Settings")]
         [SerializeField] private float speed = 10f;
         [SerializeField] private float jumpForce = 10f;
@@ -30,7 +29,7 @@ namespace Network
 
         private bool _isRunning = false;
         private bool _isFacingRight = true;
-        
+
         private SceneReferenceManager _sceneReferenceManager;
 
         public bool IsRunning
@@ -56,13 +55,13 @@ namespace Network
             }
         }
 
-
         public override void OnNetworkSpawn()
         {
             if (!IsOwner) return;
             _sceneReferenceManager = SceneReferenceManager.Instance;
             _sceneReferenceManager.SetupPlayerReference(this);
             _playerPresenter.Initialize(0, 3);//I call this function here because I want to prevent null ref error when init
+        
         }
 
         private void FixedUpdate()
@@ -145,6 +144,12 @@ namespace Network
         {
             if (IsOwner) return;
             Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation, projectileParent);
+        }
+
+        public void StopCient()
+        {
+            NetworkObject.Despawn();
+            _sceneReferenceManager.ClearPlayerReference();
         }
     }
 }

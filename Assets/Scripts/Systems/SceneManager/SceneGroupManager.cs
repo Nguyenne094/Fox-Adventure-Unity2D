@@ -13,26 +13,16 @@ public class SceneGroupManager : MonoBehaviour
     public SceneGroupDataSO CurrentSceneGroup;
     public bool SceneGroupLoaded { get; private set; }
 
-    private void Awake()
-    {
-        OnSceneGroupLoaded.OnEventRaised += () => Debug.Log("[Scene Manager] Scene Group Loaded");
-    }
-
-    private void OnDestroy()
-    {
-        OnSceneGroupLoaded.OnEventRaised -= () => Debug.Log("[Scene Manager] Scene Group Loaded");
-    }
-
     public async Task LoadSceneGroup(SceneGroupDataSO loadingSceneGroup, IProgress<float> progress)
     {
         SceneGroupLoaded = false;
         
-        if(loadingSceneGroup.Scenes.Count <= 0)
+        if(loadingSceneGroup.Scenes.Count <= 0 || loadingSceneGroup.Scenes == null)
         {
             Debug.LogError("[Scene Manager] Error: No scenes to load in the SceneGroupDataSO.");
             return;
         }
-            
+
         await UnloadSceneGroup(loadingSceneGroup);
 
         var loadedScene = new List<string>();

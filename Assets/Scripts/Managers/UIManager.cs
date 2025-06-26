@@ -12,13 +12,13 @@ using System.Collections.Generic;
 public class UIManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerRpc player;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Canvas gameCanvas;
     [SerializeField] private GameObject loseGameObjectUI;
     [SerializeField] private TMP_Text timerTMPText;
     [SerializeField] private TMP_Text recordTMPText;
 
+    public PlayerRpc Player { get; set; }
 
     private float elapsedTime;
     private bool playerWin;
@@ -28,20 +28,7 @@ public class UIManager : MonoBehaviour
     
     private StringBuilder timerSb = new StringBuilder("Time: ", 10);
 
-    public PlayerRpc Player { get => player; set => player = value; }
-    
     private void Start(){
-        //Set a record level point when data does not exist
-        // if(!PlayerPrefs.HasKey(keyStringLevel1))
-        //     PlayerPrefs.SetFloat(keyStringLevel1, float.MinValue);
-        // if(!PlayerPrefs.HasKey(keyStringLevel2))
-        //     PlayerPrefs.SetFloat(keyStringLevel2, float.MinValue);
-        //
-        // if (FirebaseAuth.DefaultInstance.CurrentUser != null)
-        // {
-        //     
-        // }
-        
         GameManager.Instance.playerLoseEventChannel.OnEventRaised += OnPlayerLose;
         GameManager.Instance.playerWinEventChannel.OnEventRaised += OnPlayerWin;
     }

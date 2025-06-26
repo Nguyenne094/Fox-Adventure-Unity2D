@@ -328,7 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  Persist: 0
   _rb: {fileID: 3179529260547417963}
   _animator: {fileID: 1809961705321356245}
   _directionChecker: {fileID: 5513421597257879506}
