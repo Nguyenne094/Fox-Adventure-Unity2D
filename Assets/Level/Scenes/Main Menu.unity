@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 966399208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Network.LobbyManager, Assembly-CSharp
         m_MethodName: OnReadyButton
         m_Mode: 1
@@ -2073,7 +2073,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 966399208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Network.LobbyManager, Assembly-CSharp
         m_MethodName: OnJoinLobbyButton
         m_Mode: 1
@@ -3684,8 +3684,6 @@ GameObject:
   m_Component:
   - component: {fileID: 966399206}
   - component: {fileID: 966399207}
-  - component: {fileID: 966399208}
-  - component: {fileID: 966399209}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -3717,93 +3715,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 966399203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b8173033d69dea4d950f3ffa3120dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4265845804
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
---- !u!114 &966399208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966399203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a05c09419fe8047a5b922c83553031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  Persist: 0
-  codeInputField: {fileID: 1178600460}
-  nameInputField: {fileID: 1197065168}
-  lobbyCodeText: {fileID: 575819329}
-  onAllPlayersReady:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1222591825}
-        m_TargetAssemblyTypeName: LoadSceneForUnityEvent, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 6fa7258637edb3f459ee9cdbc68e3912, type: 2}
-          m_ObjectArgumentAssemblyTypeName: SceneGroupDataSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &966399209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966399203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8bb35ff2b9826f4bb8640e2bd2eb015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onCreateOrJoinLobbySuccess:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1248146801}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1896705249}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+  _maxPlayers: 4
+  _lobbyName: MyLobby
 --- !u!1 &974148422
 GameObject:
   m_ObjectHideFlags: 0
@@ -7174,7 +7090,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 966399208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Network.LobbyManager, Assembly-CSharp
         m_MethodName: OnOutLobbyButton
         m_Mode: 1
@@ -8188,7 +8104,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 966399208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Network.LobbyManager, Assembly-CSharp
         m_MethodName: OnCreateLobbyButton
         m_Mode: 1
@@ -8200,7 +8116,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 966399209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyUtilities, Assembly-CSharp
         m_MethodName: OnCreateOrJoinLobbySuccess
         m_Mode: 1

@@ -90,7 +90,7 @@ namespace SingularityGroup.HotReload.Editor {
             EditorGUILayout.Space();
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField("Comany size (number of employees)");
+            EditorGUILayout.LabelField("Company size (number of employees)");
             GUI.SetNextControlName("company_size");
             _pendingCompanySize = EditorGUILayout.TextField(_pendingCompanySize)?.Trim();
             EditorGUILayout.Space();
@@ -214,7 +214,7 @@ namespace SingularityGroup.HotReload.Editor {
             requestingRedeem = true;
             await ThreadUtility.SwitchToThreadPool();
             try {
-                redeemClient = redeemClient ?? (redeemClient = RequestHelper.CreateHttpClient());
+                redeemClient = redeemClient ?? (redeemClient = HttpClientUtils.CreateHttpClient());
                 var input = new Dictionary<string, string> {
                     { "email", email },
                     { "invoice", invoiceNumber }

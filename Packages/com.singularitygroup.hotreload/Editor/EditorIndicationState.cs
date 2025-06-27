@@ -20,6 +20,7 @@ namespace SingularityGroup.HotReload.Editor {
             CompileErrors,
             ActivationFailed,
             FinishRegistration,
+            Undetected,
         }
 
         internal static readonly string greyIconPath = "grey";
@@ -34,6 +35,7 @@ namespace SingularityGroup.HotReload.Editor {
             // log icons:
             { IndicationStatus.Reloaded, HotReloadTimelineHelper.alertIconString[AlertType.AppliedChange] },
             { IndicationStatus.Unsupported, HotReloadTimelineHelper.alertIconString[AlertType.UnsupportedChange] },
+            { IndicationStatus.Undetected, HotReloadTimelineHelper.alertIconString[AlertType.UndetectedChange] },
             { IndicationStatus.PartiallySupported, HotReloadTimelineHelper.alertIconString[AlertType.PartiallySupportedChange] },
             { IndicationStatus.CompileErrors, HotReloadTimelineHelper.alertIconString[AlertType.CompileError] },
             // spinner:
@@ -68,6 +70,7 @@ namespace SingularityGroup.HotReload.Editor {
             { IndicationStatus.CompileErrors, "Scripts have compile errors" },
             { IndicationStatus.ActivationFailed, "Activation failed" },
             { IndicationStatus.Loading, "Loading" },
+            { IndicationStatus.Undetected, "No changes applied"},
         };
 
         private const int MinSpinnerDuration = 200;
@@ -76,8 +79,21 @@ namespace SingularityGroup.HotReload.Editor {
         private static bool SpinnerCompletedMinDuration => DateTime.UtcNow - spinnerStartedAt > TimeSpan.FromMilliseconds(MinSpinnerDuration);
         private static IndicationStatus GetIndicationStatus() {
             var status = GetIndicationStatusCore();
-            var newStatusIsSpinner = SpinnerIndications.Contains(status);
-            var latestStatusIsSpinner = SpinnerIndications.Contains(latestStatus);
+            
+            // Note: performance sensitive code, don't use Link
+            bool newStatusIsSpinner = false;
+            for (var i = 0; i < SpinnerIndications.Length; i++) {
+                if (SpinnerIndications[i] == status) {
+                    newStatusIsSpinner = true;
+                }
+            }
+            bool latestStatusIsSpinner = false;
+            for (var i = 0; i < SpinnerIndications.Length; i++) {
+                if (SpinnerIndications[i] == latestStatus) {
+                    newStatusIsSpinner = true;
+                }
+            }
+            
             if (status == latestStatus) {
                 return status;
             } else if (latestStatusIsSpinner) {
@@ -132,6 +148,9 @@ namespace SingularityGroup.HotReload.Editor {
                     }
                     if (EditorCodePatcher._appliedPartially) {
                         return IndicationStatus.PartiallySupported;
+                    }
+                    if (EditorCodePatcher._appliedUndetected) {
+                        return IndicationStatus.Undetected;
                     }
                     return IndicationStatus.Reloaded;
                 case PatchStatus.Patching:     return IndicationStatus.Patching;

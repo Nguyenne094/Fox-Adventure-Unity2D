@@ -79,22 +79,30 @@ namespace SingularityGroup.HotReload.Editor {
             } catch {
                 // ignore
             }
-            
+
             // Get relative path
             TextAsset file = null;
-            foreach (var path in supportedPaths) {
-                int lastprojectIndex = 0;
-                int attempt = 0;
-                while (attempt++ < 100 && !file) {
-                    lastprojectIndex = errorString.IndexOf(path, lastprojectIndex + 1, StringComparison.Ordinal);
-                    if (lastprojectIndex == -1) {
-                        break;
+            try {
+                foreach (var path in supportedPaths) {
+                    int lastprojectIndex = 0;
+                    int attempt = 0;
+                    while (attempt++ < 100 && !file) {
+                        lastprojectIndex = errorString.IndexOf(path, lastprojectIndex + 1, StringComparison.Ordinal);
+                        if (lastprojectIndex == -1) {
+                            break;
+                        }
+                        var fullCsIndex = errorString.IndexOf(".cs", lastprojectIndex, StringComparison.Ordinal);
+                        var l = fullCsIndex - lastprojectIndex + ".cs".Length;
+                        if (l <= 0) {
+                            continue;
+                        }
+                        var candidateAbsolutePath = errorString.Substring(lastprojectIndex, fullCsIndex - lastprojectIndex + ".cs".Length);
+                        var candidateRelativePath = EditorCodePatcher.GetRelativePath(filespec: candidateAbsolutePath, folder: path);
+                        file = AssetDatabase.LoadAssetAtPath<TextAsset>(candidateRelativePath);
                     }
-                    var fullCsIndex = errorString.IndexOf(".cs", lastprojectIndex, StringComparison.Ordinal);
-                    var candidateAbsolutePath = errorString.Substring(lastprojectIndex, fullCsIndex - lastprojectIndex + ".cs".Length);
-                    var candidateRelativePath = EditorCodePatcher.GetRelativePath(filespec: candidateAbsolutePath, folder: path);
-                    file = AssetDatabase.LoadAssetAtPath<TextAsset>(candidateRelativePath);
                 }
+            } catch {
+                // ignore
             }
             
             // Get the line number
@@ -397,17 +405,14 @@ namespace SingularityGroup.HotReload.Editor {
                     GUI.Label(startRect, new GUIContent(title, icon), style);
                 }
 
-                bool clickableDescription = alertEntry.title == "Unsupported change" || alertEntry.title == "Compile error" || alertEntry.title == "Failed applying patch to method";
+                bool clickableDescription = (alertEntry.title == "Unsupported change" || alertEntry.title == "Compile error" || alertEntry.title == "Failed applying patch to method") && alertEntry.alertData.alertEntryType != AlertEntryType.InlinedMethod;
                 
                 if (HotReloadTimelineHelper.expandedEntries.Contains(alertEntry) || alertEntry.alertType == AlertType.CompileError) {
                     using (new EditorGUILayout.VerticalScope()) {
                         using (new EditorGUILayout.HorizontalScope()) {
                             using (new EditorGUILayout.VerticalScope(entryType == EntryType.Child ? HotReloadWindowStyles.ChildEntryBoxStyle : HotReloadWindowStyles.EntryBoxStyle)) {
-                                if (alertEntry.alertType == AlertType.Suggestion) {
+                                if (alertEntry.alertType == AlertType.Suggestion || !clickableDescription) {
                                     GUILayout.Label(alertEntry.description, HotReloadWindowStyles.LabelStyle);
-                                } else if (!clickableDescription) {
-                                    string text = alertEntry.description;
-                                    GUILayout.TextArea(text, HotReloadWindowStyles.StacktraceTextAreaStyle);
                                 }
                                 if (alertEntry.actionData != null) {
                                     alertEntry.actionData.Invoke();
@@ -439,7 +444,8 @@ namespace SingularityGroup.HotReload.Editor {
         
                 if (alertEntry.alertType != AlertType.Suggestion && HotReloadWindowStyles.windowScreenWidth > 400 && entryType != EntryType.Child) {
                     using (new EditorGUILayout.HorizontalScope()) {
-                        GUI.Label(new Rect(startRect.x + startRect.width - 60, startRect.y, 80, 20), $"{alertEntry.timestamp.Hour:D2}:{alertEntry.timestamp.Minute:D2}:{alertEntry.timestamp.Second:D2}", HotReloadWindowStyles.TimestampStyle);
+                        var ago = (DateTime.Now - alertEntry.timestamp);
+                        GUI.Label(new Rect(startRect.x + startRect.width - 60, startRect.y, 80, 20), ago.TotalMinutes < 1 ? "now" : $"{(ago.TotalHours > 1 ? $"{Math.Floor(ago.TotalHours)} h " : string.Empty)}{ago.Minutes} min", HotReloadWindowStyles.TimestampStyle);
                     }
                 }
                 
@@ -472,6 +478,11 @@ namespace SingularityGroup.HotReload.Editor {
                     _enabledFilters.Add(AlertType.PartiallySupportedChange);
                 if (!HotReloadPrefs.RunTabPartiallyAppliedPatchesFilter && _enabledFilters.Contains(AlertType.PartiallySupportedChange))
                     _enabledFilters.Remove(AlertType.PartiallySupportedChange);
+                
+                if (HotReloadPrefs.RunTabUndetectedPatchesFilter && !_enabledFilters.Contains(AlertType.UndetectedChange))
+                    _enabledFilters.Add(AlertType.UndetectedChange);
+                if (!HotReloadPrefs.RunTabUndetectedPatchesFilter && _enabledFilters.Contains(AlertType.UndetectedChange))
+                    _enabledFilters.Remove(AlertType.UndetectedChange);
                 
                 if (HotReloadPrefs.RunTabAppliedPatchesFilter && !_enabledFilters.Contains(AlertType.AppliedChange))
                     _enabledFilters.Add(AlertType.AppliedChange);
@@ -539,15 +550,15 @@ namespace SingularityGroup.HotReload.Editor {
                                 if (HotReloadTimelineHelper.EventsTimeline.Count > 0 && GUILayout.Button("Clear")) {
                                     HotReloadTimelineHelper.ClearEntries();
                                     if (HotReloadWindow.Current) {
-                                    HotReloadWindow.Current.Repaint();
-                                }
+                                        HotReloadWindow.Current.Repaint();
+                                    }
                                 }
                                 GUILayout.Space(3);
                             }
                         }
                         if (!noteShown) {
                             GUILayout.Space(2f);
-                            using (new EditorGUILayout.VerticalScope(HotReloadWindowStyles.Scroll)) {
+                            using (new EditorGUILayout.VerticalScope()) {
                                 RenderEntries(TimelineType.Timeline);
                             }
                         }
@@ -653,16 +664,27 @@ namespace SingularityGroup.HotReload.Editor {
             if (!firstDialoguePass) {
                 return;
             }
-            var secondDialoguePass = !Application.isPlaying
-                || EditorUtility.DisplayDialog(
-                    title: "Stop Play Mode and Recompile?",
-                    message: "Using the Recompile button will stop Play Mode.\n\nDo you wish to proceed?",
-                    ok: "Stop and Recompile",
-                    cancel: "Cancel");
-            if (!secondDialoguePass) {
+            if (!ConfirmExitPlaymode("Using the Recompile button will stop Play Mode.\n\nDo you wish to proceed?")) {
                 return;
             }
             Recompile();
+        }
+
+        #if UNITY_2020_1_OR_NEWER
+        public static void SwitchToDebugMode() {
+            CompilationPipeline.codeOptimization = CodeOptimization.Debug;
+            HotReloadRunTab.Recompile();
+            HotReloadSuggestionsHelper.SetSuggestionInactive(HotReloadSuggestionKind.SwitchToDebugModeForInlinedMethods);
+        }
+        #endif
+
+        public static bool ConfirmExitPlaymode(string message) {
+            return !Application.isPlaying
+                || EditorUtility.DisplayDialog(
+                    title: "Stop Play Mode and Recompile?",
+                    message: message,
+                    ok: "Stop and Recompile",
+                    cancel: "Cancel");
         }
 
         public static bool recompiling;
@@ -672,7 +694,12 @@ namespace SingularityGroup.HotReload.Editor {
 
             CompileMethodDetourer.Reset();
             AssetDatabase.Refresh();
-            CompilationPipeline.RequestScriptCompilation();
+            // This forces the recompilation if no changes were made.
+            // This is better UX because otherwise the recompile button is unresponsive
+            // which can be extra annoying if there are compile error entries in the list
+            if (!EditorApplication.isCompiling) {
+                CompilationPipeline.RequestScriptCompilation();
+            }
         }
         
         private void RenderIndicationButtons() {
@@ -686,7 +713,7 @@ namespace SingularityGroup.HotReload.Editor {
                     EditorCodePatcher.DownloadAndRun().Forget();
                 }
             } else if (currentState.running && !currentState.starting) {
-                if (HotReloadWindowStyles.windowScreenWidth > 150 && HotReloadTimelineHelper.CompileErrorsCount == 0) {
+                if (HotReloadWindowStyles.windowScreenWidth > 150) {
                     RenderRecompileButton();
                 }
                 string stopText = HotReloadWindowStyles.windowScreenWidth > Constants.StartButtonTextHideWidth ? " Stop" : "";

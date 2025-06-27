@@ -17,11 +17,12 @@ namespace SingularityGroup.HotReload.Editor {
         readonly JsonSerializer jsonSerializer = JsonSerializer.CreateDefault();
         SemVersion newVersionDetected;
         bool started;
+        bool warnedVersionCheckFailed;
 
         private static TimeSpan RetryInterval => TimeSpan.FromSeconds(30);
         private static TimeSpan CheckInterval => TimeSpan.FromHours(1);
         
-        private static readonly HttpClient client = RequestHelper.CreateHttpClient();
+        private static readonly HttpClient client = HttpClientUtils.CreateHttpClient();
 
         private static string _lastRemotePackageVersion;
 
@@ -45,7 +46,7 @@ namespace SingularityGroup.HotReload.Editor {
                 await Task.Delay(RetryInterval);
             }
         }
-        
+
         public bool TryGetNewVersion(out SemVersion version) {
             var currentVersion = SemVersion.Parse(PackageConst.Version, strict: true);
             return !ReferenceEquals(version = newVersionDetected, null) && newVersionDetected > currentVersion;
@@ -70,8 +71,9 @@ namespace SingularityGroup.HotReload.Editor {
             if(response.err != null) {
                 if(response.statusCode == 0 || response.statusCode == 404) {
                     // probably no internet, fail silently and retry
-                } else {
+                } else if (!warnedVersionCheckFailed) {
                     Log.Warning("version check failed: {0}", response.err);
+                    warnedVersionCheckFailed = true;
                 }
             } else {
                 var newVersion = response.data;

@@ -12,20 +12,20 @@ namespace Network
             m_NetworkManager = GetComponent<NetworkManager>();
         }
 
-        void Start()
-        {
-            // Kiểm tra trạng thái mạng khi khởi động
-            if (!m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
-            {
-                // Nếu chưa có host nào, start host
-                m_NetworkManager.StartHost();
-            }
-            else if (m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
-            {
-                // Nếu đã có host/server, start client
-                m_NetworkManager.StartClient();
-            }
-        }
+        // void Start()
+        // {
+        //     // Kiểm tra trạng thái mạng khi khởi động
+        //     if (!m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
+        //     {
+        //         // Nếu chưa có host nào, start host
+        //         m_NetworkManager.StartHost();
+        //     }
+        //     else if (m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
+        //     {
+        //         // Nếu đã có host/server, start client
+        //         m_NetworkManager.StartClient();
+        //     }
+        // }
 
         private void OnGUI()
         {

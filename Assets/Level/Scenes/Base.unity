@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &241533947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241533949}
+  - component: {fileID: 241533948}
+  m_Layer: 0
+  m_Name: Lobby
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &241533948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241533947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8173033d69dea4d950f3ffa3120dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxPlayers: 4
+  _lobbyName: MyLobby
+--- !u!4 &241533949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241533947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!223 &441277473 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 1272544993932606360, guid: 2d9d32b258725044c9d4943b922c4dab, type: 3}
@@ -184,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2796b02d653b4766b40fee48ed52b089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Persist: 0
-  _startSceneGroupData: {fileID: 11400000, guid: b5bf6f44cda9ded4d9314a814194d75d, type: 2}
+  Persist: 1
+  _startSceneGroupData: {fileID: 11400000, guid: 6fa7258637edb3f459ee9cdbc68e3912, type: 2}
   _loadingCanvas: {fileID: 441277473}
   _sceneGroupManager: {fileID: 499389704}
 --- !u!1 &811385384
@@ -206,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &811385385
 Transform:
   m_ObjectHideFlags: 0
@@ -562,3 +608,4 @@ SceneRoots:
   - {fileID: 499389705}
   - {fileID: 1295797267}
   - {fileID: 811385385}
+  - {fileID: 241533949}
