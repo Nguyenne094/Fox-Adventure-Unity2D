@@ -9,6 +9,7 @@ public class LoginManager : MonoBehaviour
 {
     [SerializeField] private GameObject loggedInPanel;
     [SerializeField] private GameObject notLoggedInPanel;
+    
 
     void Start()
     {
