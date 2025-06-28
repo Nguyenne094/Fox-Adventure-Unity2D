@@ -32,7 +32,6 @@ public class SceneLoader : Singleton<SceneLoader>
         try
         {
             await SceneGroupManager.LoadSceneGroup(sceneGroup, new ProgressInformation());
-
         }
         catch (Exception ex)
         {

@@ -1,7 +1,7 @@
-﻿using Nguyen.Event;
-using Unity.Netcode;
-using UnityEngine;
+﻿using UnityEngine;
+using Nguyen.Event;
 using Utils;
+using TMPro;
 
 namespace Manager
 {
@@ -10,37 +10,60 @@ namespace Manager
     /// </summary>
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private GameObject m_PlayerPrefab;
-        [SerializeField] private Transform m_SpawnPoint;
+        [Header("References")]
+        [SerializeField] private LevelStarCriteria starCriteria;
+        [SerializeField] private LevelTimer levelTimer;
+        [SerializeField] private TMP_Text starResultText;
+
+        [Header("Events")]
         public VoidEventChannelSO playerWinEventChannel;
         public VoidEventChannelSO playerLoseEventChannel;
 
-        public override void Awake() {
-            base.Awake();
-            if (m_PlayerPrefab == null)
-            {
-                Debug.LogError("Player prefab is not assigned in GameManager!");
-            }
-        }
+        public bool IsPlayerWin { get; set; }
+        public bool IsPlayerLose { get; set; }
+
+        private int collectedStar;
+        private int starsEarned;
+        private bool tookDamage;
 
         void Start()
         {
-            SpawnPlayerServerRpc();
+            levelTimer.StartTimer();
+            EvaluateStars();
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void SpawnPlayerServerRpc(ServerRpcParams rpcParams = default)
+        public void EvaluateStars()
         {
-            if (m_PlayerPrefab != null)
+            starsEarned = 0;
+
+            if (collectedStar >= starCriteria.requiredStarsToCollect)
+                starsEarned++;
+
+            if (!starCriteria.requireNoDamage)
             {
-                GameObject obj = Instantiate(m_PlayerPrefab, m_SpawnPoint.position, Quaternion.identity);
-                obj.GetComponent<NetworkObject>().Spawn();
-                Debug.Log("Player spawned at " + m_SpawnPoint.position);
+                starsEarned++;
             }
-            else
+            else if (starCriteria.requireNoDamage && !tookDamage)
             {
-                Debug.LogError("Player prefab is not assigned!");
+                starsEarned++;
             }
+
+            if (levelTimer.GetElapsedTime() <= starCriteria.timeLimitInSeconds)
+                starsEarned++;
+
+            starResultText.text = $"Stars Earned: {starsEarned}/3";
+        }
+
+        public void CollectStar(int starValue)
+        {
+            collectedStar += starValue;
+            EvaluateStars();
+        }
+
+        public void TakeDamage()
+        {
+            tookDamage = true;
+            EvaluateStars();
         }
     }
 }

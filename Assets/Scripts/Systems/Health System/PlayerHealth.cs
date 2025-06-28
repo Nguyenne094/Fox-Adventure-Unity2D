@@ -16,9 +16,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private float hitForce = 1f;
 
     [Header("Event Channels")]
-    public FloatEventChannelSO playerTakeDamageChannel;
+    public VoidEventChannelSO playerTakeDamageChannel;
     public IntEventChannelSO playerHealChannel;
-    [SerializeField] private UnityEvent playerDie;
+    public VoidEventChannelSO playerDieChannel;
 
     private int _health;
     private bool _isInvincible;
@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             _playerPresenter.UpdateHeartView(); // Update UI directly
             if (_health <= 0 && IsAlive)
             {
-                playerDie.Invoke();
+                playerDieChannel.RaiseEvent();
                 GameManager.Instance.playerLoseEventChannel.RaiseEvent();
             } 
         }
@@ -66,13 +66,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void SubscribeToEvents()
     {
         playerHealChannel.OnEventRaised += Heal;
-        playerDie.AddListener(Die);
+        playerDieChannel.OnEventRaised += Die;
     }
 
     private void UnsubscribeFromEvents()
     {
         playerHealChannel.OnEventRaised -= Heal;
-        playerDie.RemoveListener(Die);
+        playerDieChannel.OnEventRaised -= Die;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -81,6 +81,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             float direction = Mathf.Sign(other.transform.position.x - transform.position.x);
             TakeDamage(direction);
+            playerTakeDamageChannel.RaiseEvent();
         }
     }
 

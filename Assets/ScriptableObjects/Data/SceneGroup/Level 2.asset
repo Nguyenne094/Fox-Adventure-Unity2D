@@ -17,3 +17,7 @@ MonoBehaviour:
       asset: {fileID: 102900000, guid: 1de8549f4ccff69479732edc40bba3e5, type: 3}
       guid: 1de8549f4ccff69479732edc40bba3e5
     SceneType: 0
+  - Scene:
+      asset: {fileID: 102900000, guid: b52dde588c56c8442a3b20685fe6085e, type: 3}
+      guid: b52dde588c56c8442a3b20685fe6085e
+    SceneType: 2

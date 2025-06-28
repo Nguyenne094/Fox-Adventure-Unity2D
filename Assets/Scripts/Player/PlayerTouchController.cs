@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 namespace Script.Player
 {
@@ -21,7 +19,7 @@ namespace Script.Player
         {
             moveLeftButtonClicked = false;
         }
-        
+
         public void MoveRightTouchEnter()
         {
             moveRightButtonClicked = true;
@@ -30,6 +28,12 @@ namespace Script.Player
         public void MoveRightTouchExit()
         {
             moveRightButtonClicked = false;
+        }
+
+        public void Reset()
+        {
+            moveRightButtonClicked = false;
+            moveLeftButtonClicked = false;
         }
     }
 }

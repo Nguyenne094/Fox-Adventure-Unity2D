@@ -2,11 +2,9 @@ using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using System.Text;
 using Firebase.Auth;
 using Firebase.Database;
-using Network;
 using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
@@ -18,19 +16,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text timerTMPText;
     [SerializeField] private TMP_Text recordTMPText;
 
-    public PlayerRpc Player { get; set; }
+    [Header("Star System")]
+    [SerializeField] private LevelTimer levelTimer;
 
-    private float elapsedTime;
     private bool playerWin;
+    private int starsEarned;
 
     private string keyStringLevel1 = "recordLV1";
     private string keyStringLevel2 = "recordLV2";
     
     private StringBuilder timerSb = new StringBuilder("Time: ", 10);
 
+
     private void Start(){
         GameManager.Instance.playerLoseEventChannel.OnEventRaised += OnPlayerLose;
         GameManager.Instance.playerWinEventChannel.OnEventRaised += OnPlayerWin;
+
+        levelTimer.OnTimeUpdated.AddListener(UpdateTimerUI);
     }
 
     private void OnDisable()
@@ -59,21 +61,6 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
-
-    private void Update()
-    {
-        if (!playerWin)
-        {
-            elapsedTime += Time.deltaTime;
-        
-            int minutes = Mathf.FloorToInt(elapsedTime / 60f);
-            int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-
-            timerSb.Clear();
-            timerSb.AppendFormat("Time: {0}:{1}", minutes, seconds);
-            timerTMPText.SetText(timerSb);
-        }   
-    }
 
     private void OnPlayerLose()
     {
@@ -109,28 +96,33 @@ public class UIManager : MonoBehaviour
 
     private void OnPlayerWin()
     {
-        playerWin = true;
+        GameManager.Instance.IsPlayerWin = true;
 
         string levelKey = SceneLoader.Instance.SceneGroupManager.CurrentSceneGroup.name;
 
         // Lưu thời gian lên Firebase
-        SaveLeaderboardToFirebase(levelKey, elapsedTime);
+        SaveLeaderboardToFirebase(levelKey, levelTimer.GetElapsedTime());
 
         // Hiển thị thời gian lên UI
-        recordTMPText.SetText($"Your Time: {elapsedTime:F2} seconds");
+        recordTMPText.SetText($"Your Time: {levelTimer.GetElapsedTime():F2} seconds");
 
         // Cập nhật record local nếu tốt hơn
-        float bestTime = PlayerPrefs.GetFloat(levelKey, float.MaxValue);
-        if (elapsedTime < bestTime)
+        float bestTime = PlayerPrefs.GetFloat(levelKey);
+        if (levelTimer.GetElapsedTime() < bestTime)
         {
-            PlayerPrefs.SetFloat(levelKey, elapsedTime);
+            PlayerPrefs.SetFloat(levelKey, levelTimer.GetElapsedTime());
             PlayerPrefs.Save();
-            recordTMPText.SetText($"New Record: {elapsedTime:F2} seconds");
+            recordTMPText.SetText($"New Record: {levelTimer.GetElapsedTime():F2} seconds");
         }
         else
         {
-            recordTMPText.SetText($"Your Time: {elapsedTime:F2} seconds\nBest: {bestTime:F2} seconds");
+            recordTMPText.SetText($"Your Time: {levelTimer.GetElapsedTime():F2} seconds\nBest: {bestTime:F2} seconds");
         }
+    }
+
+    private void UpdateTimerUI(float elapsedTime)
+    {
+        timerTMPText.SetText($"Time: {Mathf.FloorToInt(elapsedTime / 60)}:{Mathf.FloorToInt(elapsedTime % 60)}");
     }
 
     public void OnEscape(InputAction.CallbackContext ctx){

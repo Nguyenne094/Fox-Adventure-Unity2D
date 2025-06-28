@@ -72,14 +72,21 @@ public class SceneGroupManager : MonoBehaviour
 
     public async Task UnloadSceneGroup(SceneGroupDataSO groupSceneToLoad)
     {
+        if (groupSceneToLoad == null)
+        {
+            Debug.LogError("[Scene Manager] Error: groupSceneToLoad is null.");
+            return;
+        }
+
         var sceneCount = SceneManager.sceneCount;
         var operationGroup = new OperationGroup(sceneCount);
 
         for (int i = 0; i < sceneCount; i++)
         {
             var scene = SceneManager.GetSceneAt(i);
-            //If the early scene hasn't loaded or early scene match with the loading scene -> continue
-            if (groupSceneToLoad.GetSceneByName(scene.name) != null) continue;
+            var sceneData = groupSceneToLoad.GetSceneByName(scene.name);
+            
+            if (sceneData != null) continue;
 
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
             operationGroup.Operations.Add(asyncOperation);
@@ -94,7 +101,7 @@ public class SceneGroupManager : MonoBehaviour
         {
             await Task.Yield();
         }
-        
+
         if (operationGroup.IsDone())
         {
             OnSceneGroupUnloaded?.RaiseEvent();

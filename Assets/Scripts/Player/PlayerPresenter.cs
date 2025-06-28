@@ -1,17 +1,14 @@
 ﻿using TMPro;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace UI
 {
-    public class PlayerPresenter : NetworkBehaviour
+    public class PlayerPresenter : MonoBehaviour
     {
         [SerializeField] private TMP_Text cherryTMP;
         [SerializeField] private TMP_Text heartTMP;
         private PlayerModel _playerModel;
         public PlayerModel PlayerModel => _playerModel;
-        public TMP_Text CherryTMP { get => cherryTMP; set => cherryTMP = value; }
-        public TMP_Text HeartTMP { get => heartTMP; set => heartTMP = value; }
 
         public void Initialize(int initialCherry, int maxHealth) 
         {
@@ -23,7 +20,7 @@ namespace UI
             UpdateCherryView();
         }
 
-        public override void OnDestroy()
+        public void OnDestroy()
         {
             if (_playerModel != null)
             {

@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4c76f02baed47d29c6bee424e7243a, type: 3}
-  m_Name: Player Take Damage
+  m_Script: {fileID: 11500000, guid: f76026753b9e2084eb6484f531675bbb, type: 3}
+  m_Name: LevelStarCriteria Level 1
   m_EditorClassIdentifier: 
+  timeLimitInSeconds: 120
+  requireNoDamage: 1
+  requiredStarsToCollect: 2

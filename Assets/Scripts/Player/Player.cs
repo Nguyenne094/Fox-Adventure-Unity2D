@@ -1,16 +1,20 @@
-using System;
-using Nguyen.Event;
 using Script.Player;
 using UI;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Utils;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(DirectionChecker), typeof(Animator))]
 public class Player : Singleton<Player>
 {
+    [Header("References")]
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private DirectionChecker _directionChecker;
+    [SerializeField] private AudioSource _jumpSound;
+    [SerializeField] private PlayerTouchController _playerTouchController;
+    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerPresenter _playerPresenter;
+
     [Header("Settings")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpForce = 10f;
@@ -20,14 +24,6 @@ public class Player : Singleton<Player>
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private Transform projectileParent;
-
-    private Rigidbody2D _rb;
-    private Animator _animator;
-    private DirectionChecker _directionChecker;
-    private AudioSource _jumpSound;
-    private PlayerTouchController _playerTouchController;
-    private PlayerHealth _playerHealth;
-    private PlayerPresenter _playerPresenter;
 
     private bool _isRunning = false;
     private bool _isFacingRight = true;
@@ -55,38 +51,26 @@ public class Player : Singleton<Player>
         }
     }
 
-    public override void Awake()
-    {
-        base.Awake();
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _directionChecker = GetComponent<DirectionChecker>();
-        _dustStep = GetComponentInChildren<ParticleSystem>();
-        _jumpSound = GetComponentInChildren<AudioSource>();
-        _playerTouchController = GetComponent<PlayerTouchController>();
-        _playerHealth = GetComponent<PlayerHealth>();
-        _playerPresenter = GetComponent<PlayerPresenter>();
-    }
-
     private void Start()
     {
         _playerPresenter.Initialize(0, 3);
     }
 
-    private void FixedUpdate()
+    void Update()
     {
         if (!_playerHealth.IsAlive) return;
 
         IsRunning = _playerTouchController.MoveLeftButtonClicked || _playerTouchController.MoveRightButtonClicked;
-        if (IsRunning)
-        {
-            float horizontalInput = _playerTouchController.MoveLeftButtonClicked ? -1 : (_playerTouchController.MoveRightButtonClicked ? 1 : 0);
-            _rb.linearVelocity = new Vector2(horizontalInput * speed, _rb.linearVelocity.y);
-            FlipDirection(horizontalInput);
-        }
-
         if (IsRunning && _directionChecker.IsGrounded)
             _dustStep.Play();
+
+    }
+
+    private void FixedUpdate()
+    {
+        float horizontalInput = _playerTouchController.MoveLeftButtonClicked ? -1 : (_playerTouchController.MoveRightButtonClicked ? 1 : 0);
+        _rb.linearVelocity = new Vector2(horizontalInput * speed, _rb.linearVelocity.y);
+        FlipDirection(horizontalInput);
     }
 
     private void LateUpdate()
@@ -99,7 +83,6 @@ public class Player : Singleton<Player>
         if (_directionChecker.IsGrounded)
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
-            _jumpSound?.Stop();
             _jumpSound?.Play();
             _animator.SetTrigger(AnimationString.isJumping);
         }

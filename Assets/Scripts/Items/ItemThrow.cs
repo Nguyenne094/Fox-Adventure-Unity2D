@@ -1,5 +1,4 @@
 using Manager;
-using Network;
 using UnityEngine;
 
 public class ItemThrow : MonoBehaviour, IAttackable
@@ -8,7 +7,7 @@ public class ItemThrow : MonoBehaviour, IAttackable
     [SerializeField] private int damage = 1;
     
     private Rigidbody2D rb;
-    private PlayerRpc player;
+    private Player player;
 
     public int Damage { get => damage; set => damage = value; }
 
@@ -19,7 +18,6 @@ public class ItemThrow : MonoBehaviour, IAttackable
     
     private void Start()
     {
-        player = SceneReferenceManager.Instance.Player;
         rb.linearVelocity = new Vector2(Vector2.right.x * fireSpeed * player.transform.localScale.x, 0);
     }
 
