@@ -1,5 +1,4 @@
 using Manager;
-using UI;
 using UnityEngine;
 
 public class Star : MonoBehaviour
@@ -12,10 +11,10 @@ public class Star : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager gameManager = GameManager.Instance;
-            if (gameManager != null)
+            LevelController levelController = LevelController.Instance;
+            if (levelController != null)
             {
-                gameManager.CollectStar(starValue);
+                levelController.CollectStar(starValue);
                 Destroy(gameObject);
             }
         }

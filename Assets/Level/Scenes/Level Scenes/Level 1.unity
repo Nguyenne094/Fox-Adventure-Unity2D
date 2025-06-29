@@ -386,10 +386,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224744582}
-  - component: {fileID: 224744583}
+  - component: {fileID: 224744585}
   - component: {fileID: 224744584}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,24 +410,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &224744583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224744581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40658e2d03e145a1838be333dd392bb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Persist: 0
-  starCriteria: {fileID: 11400000, guid: 18da75b549ee39d41baac21006a38121, type: 2}
-  levelTimer: {fileID: 93879585}
-  starResultText: {fileID: 1904540216}
-  playerWinEventChannel: {fileID: 11400000, guid: debbf7370e8123441acea8cc007b75fa, type: 2}
-  playerLoseEventChannel: {fileID: 11400000, guid: f1384f043945f254180df7b250c9f5fb, type: 2}
 --- !u!114 &224744584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,9 +426,9 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 224744583}
-        m_TargetAssemblyTypeName: Manager.GameManager, Assembly-CSharp
-        m_MethodName: TakeDamage
+      - m_Target: {fileID: 224744585}
+        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+        m_MethodName: EvaluateStars
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -457,6 +439,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _Delay: 0
+--- !u!114 &224744585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224744581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851068f0f194c5740af3a7275af9ceba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Persist: 0
+  starCriteria: {fileID: 11400000, guid: 18da75b549ee39d41baac21006a38121, type: 2}
+  levelTimer: {fileID: 93879585}
+  starResultText: {fileID: 1904540216}
 --- !u!4 &309107385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7079731959537792302, guid: fe69685b8584168428e6a5e7175ca499, type: 3}
@@ -17120,6 +17118,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f2c718d04b42fa968222817632a8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1222583919 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 849010062375988157, guid: db898cb51852ecf48949438067aa96fc, type: 3}
+  m_PrefabInstance: {fileID: 1222583917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5a3a164d0b3c64093f6fd5a3bb8054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1222583920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6571243858936198274, guid: db898cb51852ecf48949438067aa96fc, type: 3}
@@ -20314,6 +20323,7 @@ MonoBehaviour:
   _firebaseManager: {fileID: 0}
   _email: {fileID: 0}
   _password: {fileID: 0}
+  _userName: {fileID: 0}
   _confirmPassword: {fileID: 0}
   _registerSuccess:
     m_PersistentCalls:
@@ -20594,7 +20604,7 @@ PrefabInstance:
     - target: {fileID: 4217384505211602957, guid: df8d006be37b9b947a728b252d15adda, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222583919}
     - target: {fileID: 4217384505211602957, guid: df8d006be37b9b947a728b252d15adda, type: 3}
       propertyPath: starCriteria
       value: 
@@ -20959,9 +20969,9 @@ SceneRoots:
   - {fileID: 675176928}
   - {fileID: 4067773593954955967}
   - {fileID: 4117891740855243249}
-  - {fileID: 224744582}
   - {fileID: 1344873284}
   - {fileID: 2128450273}
   - {fileID: 1037098889}
   - {fileID: 93879584}
+  - {fileID: 224744582}
   - {fileID: 1222583917}

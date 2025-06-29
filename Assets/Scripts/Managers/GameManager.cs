@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Nguyen.Event;
 using Utils;
-using TMPro;
 
 namespace Manager
 {
@@ -10,10 +9,6 @@ namespace Manager
     /// </summary>
     public class GameManager : Singleton<GameManager>
     {
-        [Header("References")]
-        [SerializeField] private LevelStarCriteria starCriteria;
-        [SerializeField] private LevelTimer levelTimer;
-        [SerializeField] private TMP_Text starResultText;
 
         [Header("Events")]
         public VoidEventChannelSO playerWinEventChannel;
@@ -21,49 +16,22 @@ namespace Manager
 
         public bool IsPlayerWin { get; set; }
         public bool IsPlayerLose { get; set; }
+        public UserInfor UserInfo { get => userInfor; set => userInfor = value; }
 
-        private int collectedStar;
-        private int starsEarned;
-        private bool tookDamage;
+        private UserInfor userInfor;
 
         void Start()
         {
-            levelTimer.StartTimer();
-            EvaluateStars();
-        }
-
-        public void EvaluateStars()
-        {
-            starsEarned = 0;
-
-            if (collectedStar >= starCriteria.requiredStarsToCollect)
-                starsEarned++;
-
-            if (!starCriteria.requireNoDamage)
-            {
-                starsEarned++;
-            }
-            else if (starCriteria.requireNoDamage && !tookDamage)
-            {
-                starsEarned++;
-            }
-
-            if (levelTimer.GetElapsedTime() <= starCriteria.timeLimitInSeconds)
-                starsEarned++;
-
-            starResultText.text = $"Stars Earned: {starsEarned}/3";
-        }
-
-        public void CollectStar(int starValue)
-        {
-            collectedStar += starValue;
-            EvaluateStars();
-        }
-
-        public void TakeDamage()
-        {
-            tookDamage = true;
-            EvaluateStars();
+            UserInfo = new();
         }
     }
+}
+
+[System.Serializable]
+public struct UserInfor
+{
+    public string userId;
+    public string userName;
+    public string email;
+    public string password;
 }

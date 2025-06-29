@@ -6,6 +6,7 @@ using System.Text;
 using Firebase.Auth;
 using Firebase.Database;
 using System.Collections.Generic;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -75,13 +76,8 @@ public class UIManager : MonoBehaviour
         var userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         var leaderboardRef = FirebaseDatabase.DefaultInstance.GetReference("Leaderboards").Child(levelKey);
 
-        // Sử dụng Dictionary thay vì anonymous type
-        var leaderboardData = new Dictionary<string, object>
-        {
-            { "time", time }
-        };
 
-        leaderboardRef.Child(userId).SetValueAsync(leaderboardData).ContinueWith(task =>
+        leaderboardRef.Child(userId).SetValueAsync(time).ContinueWith(task =>
         {
             if (task.IsCompleted)
             {
@@ -100,18 +96,14 @@ public class UIManager : MonoBehaviour
 
         string levelKey = SceneLoader.Instance.SceneGroupManager.CurrentSceneGroup.name;
 
-        // Lưu thời gian lên Firebase
-        SaveLeaderboardToFirebase(levelKey, levelTimer.GetElapsedTime());
-
         // Hiển thị thời gian lên UI
         recordTMPText.SetText($"Your Time: {levelTimer.GetElapsedTime():F2} seconds");
 
-        // Cập nhật record local nếu tốt hơn
-        float bestTime = PlayerPrefs.GetFloat(levelKey);
+        float bestTime = GetBestTimeFromFirebase(levelKey);
+        bestTime = (float)Math.Round(bestTime, 2);
         if (levelTimer.GetElapsedTime() < bestTime)
         {
-            PlayerPrefs.SetFloat(levelKey, levelTimer.GetElapsedTime());
-            PlayerPrefs.Save();
+            SaveLeaderboardToFirebase(levelKey, levelTimer.GetElapsedTime());
             recordTMPText.SetText($"New Record: {levelTimer.GetElapsedTime():F2} seconds");
         }
         else
@@ -125,19 +117,42 @@ public class UIManager : MonoBehaviour
         timerTMPText.SetText($"Time: {Mathf.FloorToInt(elapsedTime / 60)}:{Mathf.FloorToInt(elapsedTime % 60)}");
     }
 
-    public void OnEscape(InputAction.CallbackContext ctx){
-        if(ctx.started){
-            #if (UNITY_EDITOR || DEVELOPMENT_BUILD)
-                Debug.Log(this.name + " :" + this.GetType() + " :" + System.Reflection.MethodBase.GetCurrentMethod().Name);
-            #endif
+    private float GetBestTimeFromFirebase(string levelKey)
+    {
+        var userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var leaderboardRef = FirebaseDatabase.DefaultInstance.GetReference("Leaderboards").Child(levelKey).Child(userId);
 
-            #if (UNITY_EDITOR)
-                UnityEditor.EditorApplication.isPlaying = false;
-            #elif (UNITY_STANDALONE)
+        float bestTime = float.MaxValue; // Khởi tạo với giá trị lớn nhất
+        leaderboardRef.GetValueAsync().ContinueWith(task =>
+       {
+           if (task.IsCompleted && task.Result.Exists)
+           {
+               var dataSnapshot = task.Result;
+               bestTime = float.Parse(dataSnapshot.Child("time").Value.ToString());
+           }
+           else
+           {
+               Debug.LogWarning($"No record found for user {userId} in level {levelKey}");;
+           }
+       });
+        return bestTime;
+    }
+
+    public void OnEscape(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+#if (UNITY_EDITOR || DEVELOPMENT_BUILD)
+            Debug.Log(this.name + " :" + this.GetType() + " :" + System.Reflection.MethodBase.GetCurrentMethod().Name);
+#endif
+
+#if (UNITY_EDITOR)
+            UnityEditor.EditorApplication.isPlaying = false;
+#elif (UNITY_STANDALONE)
                 Application.Quit();
-            #elif (UNITY_WEBGL)
+#elif (UNITY_WEBGL)
                 SceneManager.LoadScene("QuitScene");
-            #endif
+#endif
         }
     }
 }

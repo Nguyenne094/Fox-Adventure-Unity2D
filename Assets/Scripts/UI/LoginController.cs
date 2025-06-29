@@ -1,5 +1,4 @@
-﻿using Firebase;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +8,7 @@ namespace UI
     {
         [Header("References")]
         [SerializeField] private FirebaseManager _firebaseManager;
+        [SerializeField] private LoginManager _loginManager;
         [SerializeField] private TMP_InputField _email;
         [SerializeField] private TMP_InputField _password;
         [SerializeField] private TMP_InputField _userName;
@@ -21,58 +21,47 @@ namespace UI
 
         public async void Register()
         {
-            IsEmailOrPasswordEmpty(_email.text, _password.text);
-
-            // Validate the email format
-            if (!IsValidEmail(_email.text))
+            if (IsEmailOrPasswordEmpty(_email.text, _password.text)) return;
+            if (!IsValidEmail(_email.text)) return;
+            if (_confirmPassword.text != _password.text)
             {
-                Debug.LogWarning("Invalid email format.");
+                Debug.LogWarning("Passwords do not match");
                 return;
             }
 
-            if (_confirmPassword.text == _password.text)
+            bool success = await _firebaseManager.Register(_email.text, _password.text, _userName.text);
+            if (success)
             {
-                try
-                {
-                    await _firebaseManager.Register(_email.text, _password.text, _userName.text);
-                    _registerSuccess.Invoke();
-                }
-                catch (FirebaseException e)
-                {
-                    Debug.LogError($"Firebase registration failed: {e.Message}");
-                }
+                _registerSuccess?.Invoke();
+                _loginManager.UpdateUserInforUI();
             }
             else
             {
-                Debug.LogWarning("Passwords do not match");
+                Debug.LogWarning("Register failed.");
             }
         }
 
         public async void Login()
         {
-            IsEmailOrPasswordEmpty(_email.text, _password.text);
+            if (IsEmailOrPasswordEmpty(_email.text, _password.text)) return;
+            if (!IsValidEmail(_email.text)) return;
 
-            // Validate the email format
-            if (!IsValidEmail(_email.text))
+            bool success = await _firebaseManager.Login(_email.text, _password.text);
+            if (success)
             {
-                Debug.LogWarning("Invalid email format.");
-                return;
+                _loginSuccess?.Invoke();
+                _loginManager.UpdateUserInforUI();
             }
-
-            try
+            else
             {
-                await _firebaseManager.Login(_email.text, _password.text);
-                _loginSuccess.Invoke();
-            }
-            catch (FirebaseException e)
-            {
-                Debug.LogError($"Firebase login failed: {e.Message}");
+                Debug.LogWarning("Login failed.");
             }
         }
 
+
         private bool IsEmailOrPasswordEmpty(string email, string password)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 Debug.LogWarning("Email and password cannot be empty.");
                 return true;
