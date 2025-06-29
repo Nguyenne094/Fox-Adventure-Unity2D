@@ -8,16 +8,16 @@ using Utils;
 using System.Threading.Tasks;
 using Manager;
 
+/// <summary>
+/// Initializes Firebase and provides methods for user registration, login, and logout.
+/// </summary>
 public class FirebaseManager : Singleton<FirebaseManager>
 {
 
     public DatabaseReference DbRef { get; private set; }
- 
+
     [Provide]
     public FirebaseManager Provide() => this;
-    
-    public bool RegisterSuccess { get; set; }
-    public bool LoginSuccess { get; set; }
 
     public override void Awake()
     {
@@ -28,6 +28,11 @@ public class FirebaseManager : Singleton<FirebaseManager>
             {
                 FirebaseApp app = FirebaseApp.DefaultInstance;
                 DbRef = FirebaseDatabase.DefaultInstance.RootReference;
+                var database = FirebaseDatabase.DefaultInstance;
+                database.GetReference("users")
+                    .Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+                    .Child("active")
+                    .SetValueAsync(true);
             }
             else
             {
@@ -38,7 +43,6 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
     public async Task<bool> Register(string email, string password, string userName)
     {
-        RegisterSuccess = false;
         if (HasActivatingUser()) return false;
 
         var auth = FirebaseAuth.DefaultInstance;
@@ -67,6 +71,11 @@ public class FirebaseManager : Singleton<FirebaseManager>
             .Child("userName")
             .SetValueAsync(userName);
 
+        await database.GetReference("users")
+            .Child(currentUser.UserId)
+            .Child("active")
+            .SetValueAsync(true);
+
         GameManager.Instance.UserInfo = new UserInfor
         {
             userId = currentUser.UserId,
@@ -75,25 +84,32 @@ public class FirebaseManager : Singleton<FirebaseManager>
             password = password
         };
 
-        RegisterSuccess = true;
         return true;
     }
 
     public async Task<bool> Login(string email, string password)
     {
-        LoginSuccess = false;
         if (HasActivatingUser()) return false;
 
-        var signIn = await FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync(email, password);
-        if (signIn == null || FirebaseAuth.DefaultInstance.CurrentUser == null) return false;
+        var auth = FirebaseAuth.DefaultInstance;
+        var database = FirebaseDatabase.DefaultInstance;
 
-        string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var signIn = await auth.SignInWithEmailAndPasswordAsync(email, password);
+        var currentUser = auth.CurrentUser;
+        var userId = currentUser.UserId;
 
-        var userSnapshot = await FirebaseDatabase.DefaultInstance
+        if (signIn == null || currentUser == null) return false;
+
+        var userSnapshot = await database
             .GetReference("users")
             .Child(userId)
             .Child("userName")
             .GetValueAsync();
+
+        await database.GetReference("users")
+            .Child(userId)
+            .Child("active")
+            .SetValueAsync(true);
 
         GameManager.Instance.UserInfo = new UserInfor
         {
@@ -103,7 +119,6 @@ public class FirebaseManager : Singleton<FirebaseManager>
             password = password
         };
 
-        LoginSuccess = true;
         return true;
     }
 
@@ -111,13 +126,18 @@ public class FirebaseManager : Singleton<FirebaseManager>
     {
         if (HasActivatingUser())
         {
+            string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+            FirebaseDatabase.DefaultInstance.GetReference("users")
+                .Child(userId)
+                .Child("active")
+                .SetValueAsync(false);
             FirebaseAuth.DefaultInstance.SignOut();
             return true;
         }
         Debug.Log("No user found");
         return false;
     }
-    
+
     public void LogoutForButton()
     {
         if (HasActivatingUser())
@@ -132,5 +152,34 @@ public class FirebaseManager : Singleton<FirebaseManager>
     {
         var auth = FirebaseAuth.DefaultInstance;
         return auth.CurrentUser != null;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SetUserActive(false);
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus) // app chuyển nền hoặc bị kill
+            SetUserActive(false);
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+            SetUserActive(true);
+    }
+
+    private void SetUserActive(bool isActive)
+    {
+        if (HasActivatingUser())
+        {
+            string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+            FirebaseDatabase.DefaultInstance.GetReference("users")
+                .Child(userId)
+                .Child("active")
+                .SetValueAsync(isActive);
+        }
     }
 }

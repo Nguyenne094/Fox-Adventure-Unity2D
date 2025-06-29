@@ -4,9 +4,10 @@ using TMPro;
 using UnityEngine.UI;
 using Firebase.Database;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 /// <summary>
-/// Check whether a user logged in
+/// Handles user login on starting game and displays user
 /// </summary>
 public class LoginManager : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_Text userIdText;
     [SerializeField] private TMP_Text userNameText;
     [SerializeField] private TMP_Text userEmailText;
-    [SerializeField] private ScrollRect friendListScrollRect;
-
+    [SerializeField] private RectTransform contentOfFriendListScrollView;
+    [SerializeField] private GameObject friendViewPrefab;
 
     void Start()
     {
@@ -90,17 +91,65 @@ public class LoginManager : MonoBehaviour
                 {
                     userNameText.text = "Not Found";
                 }
-
-                // friendListScrollRect.content.GetComponent<TMP_Text>().text = "Friend List:\n";
             }
             catch (System.Exception ex)
             {
                 Debug.LogError($"Failed to retrieve user information: {ex.Message}");
             }
+            await LoadActiveUsers();
         }
         else
         {
             Debug.LogWarning("No user is currently logged in.");
+        }
+    }
+
+    public async Task LoadActiveUsers()
+    {
+        var db = FirebaseDatabase.DefaultInstance;
+        var usersSnapshot = await db.GetReference("users").GetValueAsync();
+
+        if (usersSnapshot.Exists)
+        {
+            List<UserInfor> friendsInfor = new List<UserInfor>();
+
+            foreach (var user in usersSnapshot.Children)
+            {
+                string name = "";
+                bool isActive = false;
+
+                if (user.Child("userName").Exists)
+                    name = user.Child("userName").Value.ToString();
+
+                if (user.Child("active").Exists)
+                    isActive = bool.Parse(user.Child("active").Value.ToString());
+
+                if (isActive && user.Key != FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+                {
+                    friendsInfor.Add(new UserInfor
+                    {
+                        userId = user.Key,
+                        userName = name,
+                        email = user.Child("email").Exists ? user.Child("email").Value.ToString() : "",
+                    });
+                }
+            }
+
+            // Clear existing friends list
+            foreach (Transform child in contentOfFriendListScrollView)
+            {
+                Destroy(child.gameObject);
+            }
+
+            // Populate the friends list with active users
+            foreach (var friend in friendsInfor)
+            {
+                GameObject friendView = Instantiate(friendViewPrefab, contentOfFriendListScrollView);
+                friendView.GetComponent<TMP_Text>().text = friend.userName;
+            }
+        }
+        else
+        {
         }
     }
 }
