@@ -4,7 +4,7 @@ using UnityEngine;
 using Utils;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(DirectionChecker), typeof(Animator))]
-public class Player : Singleton<Player>
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;

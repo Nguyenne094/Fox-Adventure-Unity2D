@@ -61,9 +61,9 @@ public class Eagle : MonoBehaviour
 
     private void Attack()
     {
-        IsFacingLeft = FacingTarget(Player.Instance.transform.position);
+        IsFacingLeft = FacingTarget(PlayerController.Instance.transform.position);
         animator.SetBool(AnimationString.attack, true);
-        MovementToTarget(Player.Instance.transform.position, _speed);
+        MovementToTarget(PlayerController.Instance.transform.position, _speed);
     }
 
     private void MovementToTarget(Vector2 targetPosition, float speed)
@@ -81,7 +81,7 @@ public class Eagle : MonoBehaviour
         if (detectedZone.wasDetected)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, Player.Instance.transform.position);
+            Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
         }
 
         Gizmos.color = Color.white;

@@ -16,22 +16,13 @@ namespace Manager
 
         public bool IsPlayerWin { get; set; }
         public bool IsPlayerLose { get; set; }
-        public UserInfor UserInfo { get => userInfor; set => userInfor = value; }
+        public UserData CurrentUserData { get => userInfor; set => userInfor = value; }
 
-        private UserInfor userInfor;
+        private UserData userInfor;
 
         void Start()
         {
-            UserInfo = new();
+            CurrentUserData = new();
         }
     }
-}
-
-[System.Serializable]
-public struct UserInfor
-{
-    public string userId;
-    public string userName;
-    public string email;
-    public string password;
 }

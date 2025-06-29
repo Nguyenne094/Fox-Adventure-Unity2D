@@ -111,7 +111,7 @@ public class LoginManager : MonoBehaviour
 
         if (usersSnapshot.Exists)
         {
-            List<UserInfor> friendsInfor = new List<UserInfor>();
+            List<UserData> friendsInfor = new List<UserData>();
 
             foreach (var user in usersSnapshot.Children)
             {
@@ -126,7 +126,7 @@ public class LoginManager : MonoBehaviour
 
                 if (isActive && user.Key != FirebaseAuth.DefaultInstance.CurrentUser.UserId)
                 {
-                    friendsInfor.Add(new UserInfor
+                    friendsInfor.Add(new UserData
                     {
                         userId = user.Key,
                         userName = name,
@@ -145,11 +145,20 @@ public class LoginManager : MonoBehaviour
             foreach (var friend in friendsInfor)
             {
                 GameObject friendView = Instantiate(friendViewPrefab, contentOfFriendListScrollView);
-                friendView.GetComponent<TMP_Text>().text = friend.userName;
+                friendView.GetComponentInChildren<TMP_Text>().text = friend.userName;
             }
         }
         else
         {
         }
     }
+}
+
+[System.Serializable]
+public struct UserData
+{
+    public string userId;
+    public string userName;
+    public string email;
+    public string password;
 }

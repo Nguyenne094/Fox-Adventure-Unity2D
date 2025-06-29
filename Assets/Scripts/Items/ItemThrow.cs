@@ -7,7 +7,7 @@ public class ItemThrow : MonoBehaviour, IAttackable
     [SerializeField] private int damage = 1;
     
     private Rigidbody2D rb;
-    private Player player;
+    private PlayerController player;
 
     public int Damage { get => damage; set => damage = value; }
 

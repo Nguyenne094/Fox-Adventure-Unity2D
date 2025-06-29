@@ -28,17 +28,24 @@ public class FirebaseManager : Singleton<FirebaseManager>
             {
                 FirebaseApp app = FirebaseApp.DefaultInstance;
                 DbRef = FirebaseDatabase.DefaultInstance.RootReference;
-                var database = FirebaseDatabase.DefaultInstance;
-                database.GetReference("users")
-                    .Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId)
-                    .Child("active")
-                    .SetValueAsync(true);
             }
             else
             {
                 Debug.LogError("Could not resolve Firebase dependencies." + task.Exception);
             }
         });
+    }
+
+    void Start()
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        if(currentUser != null){
+            var database = FirebaseDatabase.DefaultInstance;
+            database.GetReference("users")
+                .Child(currentUser)
+                .Child("active")
+                .SetValueAsync(true);
+        }
     }
 
     public async Task<bool> Register(string email, string password, string userName)
@@ -76,7 +83,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
             .Child("active")
             .SetValueAsync(true);
 
-        GameManager.Instance.UserInfo = new UserInfor
+        GameManager.Instance.CurrentUserData = new UserData
         {
             userId = currentUser.UserId,
             userName = userName,
@@ -111,7 +118,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
             .Child("active")
             .SetValueAsync(true);
 
-        GameManager.Instance.UserInfo = new UserInfor
+        GameManager.Instance.CurrentUserData = new UserData
         {
             userId = userId,
             userName = userSnapshot.Exists ? userSnapshot.Value.ToString() : "",
