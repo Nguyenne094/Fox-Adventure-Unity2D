@@ -145,16 +145,6 @@ public class FirebaseManager : Singleton<FirebaseManager>
         return false;
     }
 
-    public void LogoutForButton()
-    {
-        if (HasActivatingUser())
-        {
-            FirebaseAuth.DefaultInstance.SignOut();
-            return;
-        }
-        Debug.Log("No user found");
-    }
-
     private bool HasActivatingUser()
     {
         var auth = FirebaseAuth.DefaultInstance;

@@ -5859,7 +5859,7 @@ PrefabInstance:
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 519394337}
+      objectReference: {fileID: 1368580393}
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -5882,7 +5882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LogoutForButton
+      value: Logout
       objectReference: {fileID: 0}
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -5894,7 +5894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FirebaseManager, Assembly-CSharp
+      value: LoginController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 58235175490963283, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -5938,7 +5938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_AnchorMin.x
@@ -5946,15 +5946,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_LocalScale.x
@@ -5974,7 +5974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5998,11 +5998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 108
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884428153351651212, guid: cf7a6384806cc1f4abb8716ef91c4a83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

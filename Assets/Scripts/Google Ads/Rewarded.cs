@@ -21,22 +21,22 @@ public class Rewarded : MonoBehaviour
         GameManager.Instance.playerWinEventChannel.OnEventRaised += ShowRewardedAd;
     }
 
-        private void OnDisable()
+    private void OnDisable()
+    {
+        if (GameManager.Instance == null)
         {
-            if (GameManager.Instance == null)
-            {
-                Debug.LogError("GameManager.Instance is null");
-                return;
-            }
-
-            if (GameManager.Instance.playerWinEventChannel == null)
-            {
-                Debug.LogError("playerWinEventChannel is null");
-                return;
-            }
-
-            GameManager.Instance.playerWinEventChannel.OnEventRaised -= ShowRewardedAd;
+            Debug.LogError("GameManager.Instance is null");
+            return;
         }
+
+        if (GameManager.Instance.playerWinEventChannel == null)
+        {
+            Debug.LogError("playerWinEventChannel is null");
+            return;
+        }
+
+        GameManager.Instance.playerWinEventChannel.OnEventRaised -= ShowRewardedAd;
+    }
     private void CreateRewardedAd()
     {
         if (_rewardedAd != null)
