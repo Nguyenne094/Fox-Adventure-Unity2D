@@ -94,6 +94,8 @@ GoogleService-Info.plist
 *.wav
 *.mp4
 *.blend
+*.svg
+*.swf
 
 # === CUSTOM BUILD OUTPUT ===
 Builds/
@@ -112,3 +114,5 @@ Firebase/Plugins
 
 FirebaseCppApp-12_10_0.bundle
 FirebaseCppApp-12_10_0.so
+
+*.meta
