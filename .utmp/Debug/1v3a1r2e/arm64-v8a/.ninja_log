@@ -1,0 +1,23 @@
+# ninja log v5
+1	8738	7730117173500760	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	877c0cb53977cd88
+7389	9535	7730117235973528	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	feff6082c8b4a41f
+10193	12394	7730117264620764	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1v3a1r2e/obj/arm64-v8a/libgame.so	32f1dded29e2a6ac
+3416	8785	7730117224109052	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	153f1a8bbfc51d7b
+21	8749	7730117169645399	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	5dd4e394208829e
+5448	10192	7730117243196034	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	2bc9ffd022430636
+35	8751	7730117167072560	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7477b7a46141c1d2
+57	8760	7730117184490452	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	eba2e27840798025
+1634	8781	7730117207271487	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	22d1ac77b7590fbb
+3298	8783	7730117212515788	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	669a0c71946173bb
+9536	12170	7730117258952673	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1v3a1r2e/obj/arm64-v8a/libswappywrapper.so	318d395623fbe44
+7	3404	7730514901566624	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	eba2e27840798025
+31	3406	7730514898288127	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7477b7a46141c1d2
+68	3408	7730514903927668	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	877c0cb53977cd88
+89	3409	7730514900523394	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	5dd4e394208829e
+101	3411	7730514903407808	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	669a0c71946173bb
+1243	3413	7730514901656615	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	153f1a8bbfc51d7b
+139	3586	7730514906368669	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	22d1ac77b7590fbb
+3055	3637	7730514907061731	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	feff6082c8b4a41f
+3638	4087	7730514911400269	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1v3a1r2e/obj/arm64-v8a/libswappywrapper.so	318d395623fbe44
+1312	4363	7730514914234942	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	2bc9ffd022430636
+4363	4653	7730514916934111	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1v3a1r2e/obj/arm64-v8a/libgame.so	32f1dded29e2a6ac

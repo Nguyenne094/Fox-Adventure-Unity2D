@@ -28,30 +28,29 @@ namespace Utils
 
         private static void SetupInstance()
         {
-            _instance = Object.FindFirstObjectByType<T>();
+            _instance = FindFirstObjectByType<T>();
 
-            if (!_instance)
+            if (_instance == null)
             {
-                GameObject gameObj = new GameObject();
-                gameObj.name = typeof(T).Name;
-                _instance = gameObj.AddComponent<T>();
+                var obj = new GameObject(typeof(T).Name);
+                _instance = obj.AddComponent<T>();
             }
         }
 
         private void RemoveDuplicate()
         {
-            if (_instance != null)
-            {
-                // Destroy(gameObject);
-            }
-            else
+            if (_instance == null)
             {
                 _instance = this as T;
-            }
 
-            if (Persist)
+                if (Persist)
+                {
+                    DontDestroyOnLoad(gameObject);
+                }
+            }
+            else if (_instance != this)
             {
-                DontDestroyOnLoad(gameObject);
+                Destroy(gameObject);
             }
         }
     }

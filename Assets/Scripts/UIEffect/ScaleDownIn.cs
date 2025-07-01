@@ -4,13 +4,17 @@ using System.Collections;
 namespace UIEffect{
     public class ScaleDownIn : MonoBehaviour
     {
-        [SerializeField] private float duration = 0.5f;
+        [SerializeField] private float duration = 0.2f;
 
         private Vector3 originalScale;
 
+        void Start()
+        {   
+            originalScale = transform.localScale;
+        }
+
         void OnEnable()
         {
-            originalScale = transform.localScale;
             transform.localScale = Vector3.zero; 
             TriggerScale();
         }

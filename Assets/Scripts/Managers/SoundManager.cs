@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Bap.DependencyInjection;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Pool;
@@ -19,12 +20,14 @@ namespace Manager
 
         private ObjectPool<AudioSource> audioSourcePool;
 
+        [Provide] private SoundManager Construct() => this;
+
         private void Start()
         {
             audioSourcePool =
                 new ObjectPool<AudioSource>(CreateNewAudioSource, GetAS, ReleaseAS, DestroyAS, false, 10, 20);
-            
-            soundBackground.clip = audioClips[Random.Range(0, audioClips.Count-1)];
+
+            soundBackground.clip = audioClips[Random.Range(0, audioClips.Count - 1)];
             soundBackground?.Play();
 
             audioMixer.SetFloat("music", 1);

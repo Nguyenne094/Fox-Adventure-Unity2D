@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 604392819584158336}
   - component: {fileID: 6776148660084643264}
-  - component: {fileID: 1443301253162050205}
   - component: {fileID: 8078135353319419619}
+  - component: {fileID: 1443301253162050205}
+  - component: {fileID: 2844761989417770940}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -89,19 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1443301253162050205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2601335426882135713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bfccc548ce7a504fb218bafab1fd394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starValue: 1
 --- !u!61 &8078135353319419619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +136,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &1443301253162050205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601335426882135713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bfccc548ce7a504fb218bafab1fd394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerColliderEvent: {fileID: 11400000, guid: f1fb075970d7784488a600a748319197, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &2844761989417770940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601335426882135713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c409516d29ab04419c61e570b89d401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerLayer:
+    serializedVersion: 2
+    m_Bits: 64

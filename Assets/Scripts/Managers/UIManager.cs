@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using System.Text;
 using Firebase.Auth;
 using Firebase.Database;
-using System.Collections.Generic;
 using System;
+using Quest;
 
 public class UIManager : MonoBehaviour
 {
@@ -97,18 +97,18 @@ public class UIManager : MonoBehaviour
         string levelKey = SceneLoader.Instance.SceneGroupManager.CurrentSceneGroup.name;
 
         // Hiển thị thời gian lên UI
-        recordTMPText.SetText($"Your Time: {levelTimer.GetElapsedTime():F2} seconds");
+        recordTMPText.SetText($"Your Time: {levelTimer.ElapsedTime:F2} seconds");
 
         float bestTime = GetBestTimeFromFirebase(levelKey);
         bestTime = (float)Math.Round(bestTime, 2);
-        if (levelTimer.GetElapsedTime() < bestTime)
+        if (levelTimer.ElapsedTime < bestTime)
         {
-            SaveLeaderboardToFirebase(levelKey, levelTimer.GetElapsedTime());
-            recordTMPText.SetText($"New Record: {levelTimer.GetElapsedTime():F2} seconds");
+            SaveLeaderboardToFirebase(levelKey, levelTimer.ElapsedTime);
+            recordTMPText.SetText($"New Record: {levelTimer.ElapsedTime:F2} seconds");
         }
         else
         {
-            recordTMPText.SetText($"Your Time: {levelTimer.GetElapsedTime():F2} seconds\nBest: {bestTime:F2} seconds");
+            recordTMPText.SetText($"Your Time: {levelTimer.ElapsedTime:F2} seconds\nBest: {bestTime:F2} seconds");
         }
     }
 

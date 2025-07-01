@@ -22,12 +22,7 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private RectTransform contentOfFriendListScrollView;
     [SerializeField] private GameObject friendViewPrefab;
 
-    void Start()
-    {
-        CheckUserLogin();
-    }
-
-    private void CheckUserLogin()
+    public void CheckUserLogin()
     {
         var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
         if (currentUser != null)
@@ -160,5 +155,11 @@ public struct UserData
     public string userId;
     public string userName;
     public string email;
-    public string password;
+
+    public UserData(string userId, string userName, string email)
+    {
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+    }
 }

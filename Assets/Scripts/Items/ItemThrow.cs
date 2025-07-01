@@ -18,6 +18,7 @@ public class ItemThrow : MonoBehaviour, IAttackable
     
     private void Start()
     {
+        player = PlayerController.Instance;
         rb.linearVelocity = new Vector2(Vector2.right.x * fireSpeed * player.transform.localScale.x, 0);
     }
 

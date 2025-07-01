@@ -16,13 +16,5 @@ namespace Manager
 
         public bool IsPlayerWin { get; set; }
         public bool IsPlayerLose { get; set; }
-        public UserData CurrentUserData { get => userInfor; set => userInfor = value; }
-
-        private UserData userInfor;
-
-        void Start()
-        {
-            CurrentUserData = new();
-        }
     }
 }

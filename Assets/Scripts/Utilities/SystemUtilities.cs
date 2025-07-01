@@ -89,7 +89,7 @@ public class SystemUtilities : MonoBehaviour
             .SetText("I just captured this screenshot!")
             .Share();
     }
-    
+
     public void QuitApplication()
     {
         Application.Quit();
