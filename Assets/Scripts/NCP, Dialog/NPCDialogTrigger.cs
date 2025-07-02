@@ -7,15 +7,16 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class NPCDialogueTrigger : MonoBehaviour
 {
-    public DialogueData dialogueData;
-    public DialogueUIController uiController;
-    public UnityEvent onTrigger;
-    public UnityEvent onDialogueComplete;
+    [SerializeField] private bool useTrigger = true;
+    [SerializeField] private  DialogueData dialogueData;
+    [SerializeField] private  DialogueUIController uiController;
+    [SerializeField] private  UnityEvent onDialogStart;
+    [SerializeField] private  UnityEvent onDialogueComplete;
 
     public Animator npcAnimator;
     public AudioSource audioSource;
 
-    private bool hasTriggered = false;
+    private bool isTalked = false;
     private int dialogueIndex = 0;
     private bool isShowingFullLine = false;
     private bool isDialogueActive = false;
@@ -34,13 +35,10 @@ public class NPCDialogueTrigger : MonoBehaviour
         ETouch.EnhancedTouchSupport.Disable();
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasTriggered || !other.CompareTag("Player")) return;
+        if (!useTrigger || isTalked || !other.CompareTag("Player")) return;
 
-        hasTriggered = true;
-        onTrigger?.Invoke();
         StartDialogue();
     }
 
@@ -56,10 +54,12 @@ public class NPCDialogueTrigger : MonoBehaviour
             SkipTyping();
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
+        onDialogStart?.Invoke();
         dialogueIndex = 0;
         isDialogueActive = true;
+        isTalked = true;
         PlayLine(dialogueData.dialogueLines[dialogueIndex]);
     }
 

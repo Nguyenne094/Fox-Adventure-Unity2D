@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Eagle : MonoBehaviour
 {
+    [Header("Setting")]
+    [SerializeField] private float _speed = 0.1f;
     [SerializeField] private bool isFacingLeft = true;
     [SerializeField] private float spawnRange;
 
@@ -12,6 +14,7 @@ public class Eagle : MonoBehaviour
     private EnemyHealth enemyHealth;
     private CircleCollider2D col;
     private Animator animator;
+    private GameObject player;
     
     public bool IsFacingLeft
     {
@@ -26,15 +29,13 @@ public class Eagle : MonoBehaviour
         }
     }
 
-    [Header("Setting")]
-    [SerializeField] private float _speed = 0.1f;
-
     private void Awake()
     {
         detectedZone = GetComponentInChildren<DetectedZone>();
         enemyHealth = GetComponent<EnemyHealth>();
         col = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
+        player = PlayerController.Instance.gameObject;
     }
 
     private void Start()
@@ -52,7 +53,7 @@ public class Eagle : MonoBehaviour
                 animator.SetBool(AnimationString.attack, false);
                 MovementToTarget(spawnPosition, _speed);
             }
-            if (detectedZone.wasDetected)
+            else
             {
                 Attack();
             }
@@ -61,14 +62,18 @@ public class Eagle : MonoBehaviour
 
     private void Attack()
     {
-        IsFacingLeft = FacingTarget(PlayerController.Instance.transform.position);
+        IsFacingLeft = FacingTarget(player.transform.position);
         animator.SetBool(AnimationString.attack, true);
-        MovementToTarget(PlayerController.Instance.transform.position, _speed);
+        MovementToTarget(player.transform.position, _speed);
     }
 
     private void MovementToTarget(Vector2 targetPosition, float speed)
     {
-        transform.position = Vector3.Lerp(transform.position, targetPosition, speed);
+        transform.position = new Vector3(
+            Mathf.MoveTowards(transform.position.x, targetPosition.x, speed * Time.deltaTime),
+            Mathf.MoveTowards(transform.position.y, targetPosition.y, speed * Time.deltaTime),
+            transform.position.z
+        );
     }
 
     private bool FacingTarget(Vector3 targetPosition)
@@ -78,12 +83,6 @@ public class Eagle : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (detectedZone.wasDetected)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, PlayerController.Instance.transform.position);
-        }
-
         Gizmos.color = Color.white;
         Gizmos.DrawCube(spawnPosition, new Vector3(0.1f, 0.1f, 0.1f));
     }

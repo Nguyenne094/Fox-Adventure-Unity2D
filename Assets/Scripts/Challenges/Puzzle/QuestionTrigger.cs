@@ -10,12 +10,15 @@ public class QuestionTrigger : MonoBehaviour
     [SerializeField] private List<QuestionDataSO> questionDataList;
 
     [Header("UI Elements")]
-    [SerializeField] private Canvas questionPanel;
+    [SerializeField] private RectTransform questionPanel;
+    [SerializeField] private RectTransform successPanel;
+    [SerializeField] private RectTransform failurePanel;
     [SerializeField] private TMP_Text questionText;
     [SerializeField] private Button answerButton1;
     [SerializeField] private Button answerButton2;
 
     [Header("Events")]
+    public UnityEvent onChallengeStarted;
     public UnityEvent onChallengeCompleted;
     public UnityEvent onChallengeFailed;
 
@@ -36,6 +39,7 @@ public class QuestionTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTriggered = true;
+            onChallengeStarted?.Invoke();
             ShowQuestionUI();
         }
     }
@@ -96,9 +100,6 @@ public class QuestionTrigger : MonoBehaviour
     private void EndChallenge()
     {
         questionPanel.gameObject.SetActive(false);
-
-        // Reactivate player control panel
-        playerControlPanel.SetActive(true);
 
         if (correctAnswersCount >= requiredCorrectAnswers)
         {

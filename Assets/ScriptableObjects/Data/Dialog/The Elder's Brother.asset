@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad728c5b5bfd65548851d0855f9f68dc, type: 3}
+  m_Name: The Elder's Brother
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "\xD4 h\xF4"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 1
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "Ta \u0111\u1EE3i ng\u01B0\u01A1i l\xE2u l\u1EAFm r\u1ED3i \u0111\xF3"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 0
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "Ta l\xE0 g\u1EA5u v\xE0ng, anh trai c\u1EE7a g\u1EA5u b\xE9o tr\u01B0\u1EDFng
+      l\xE0ng"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 0
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "Ta \u1EDF \u0111\xE2y \u0111\u1EC3 th\u1EED th\xE1ch tri th\u1EE9c c\u1EE7a
+      ng\u01B0\u01A1i"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 0
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "Mu\u1ED1n \u0111i qua c\xE1nh c\u1EEDa \u0111\xE1 n\xE0y th\xEC ph\u1EA3i
+      tr\u1EA3 l\u1EDDi h\u1EBFt c\xE2u h\u1ECFi c\u1EE7a ta"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 0
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "H\xE3y s\u1EB5n s\xE0ng ta \u0111i"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 0
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: Hahahahahahahaha
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 2

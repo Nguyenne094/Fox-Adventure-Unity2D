@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad728c5b5bfd65548851d0855f9f68dc, type: 3}
-  m_Name: Elder
+  m_Name: Elder level 2
   m_EditorClassIdentifier: 
   dialogueLines:
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
-    text: "Ch\xE0o m\u1EEBng con \u0111\u1EBFn v\u1EDBi ng\xF4i l\xE0ng c\u1EE7a
-      ch\xFAng ta."
+    text: "Ta g\u1EB7p l\u1EA1i con r\u1ED3i"
     animationTrigger: 
     voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
     voiceVolume: 1
@@ -23,8 +22,7 @@ MonoBehaviour:
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
-    text: "Th\u1EDDi gian g\u1EA7n \u0111\xE2y... c\xF3 \u0111i\u1EC1u g\xEC \u0111\xF3
-      kh\xF4ng \u1ED5n trong khu r\u1EEBng ph\xEDa T\xE2y."
+    text: "Th\u1EADt may qu\xE1! Con v\u1EABn \u1ED5n"
     animationTrigger: 
     voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
     voiceVolume: 1
@@ -32,8 +30,8 @@ MonoBehaviour:
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
-    text: "N\u1EBFu con \u0111\u1EE7 d\u0169ng c\u1EA3m, ta c\xF3 m\u1ED9t vi\u1EC7c
-      mu\u1ED1n nh\u1EDD."
+    text: "H\xE3y c\u1EA9n th\u1EADn v\u1EDBi nh\u1EEFng con \u0111\u1ED9ng v\u1EADt
+      m\u1EDBi"
     animationTrigger: 
     voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
     voiceVolume: 1
@@ -41,16 +39,15 @@ MonoBehaviour:
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
-    text: "H\xE3y ti\xEAu di\u1EC7t to\xE0n b\u1ED9 th\xFA hoang d\xE3 \u0111\u1EC3
-      b\u1EA3o v\u1EC7 khu r\u1EEBng"
+    text: "Ch\xFAng r\u1EA5t nhanh v\xE0 hung h\xE3n \u0111\u1EA5y"
     animationTrigger: 
     voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
     voiceVolume: 1
     stopVoideOnFinish: 1
     autoNextDelay: 5
-    textEffect: 4
+    textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
-    text: "\u0110i \u0111i !!!"
+    text: "Ch\xFAc con may m\u1EAFn !!!"
     animationTrigger: 
     voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
     voiceVolume: 1

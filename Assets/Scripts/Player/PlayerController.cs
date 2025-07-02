@@ -40,14 +40,6 @@ public class PlayerController : Singleton<PlayerController>
         {
             _animator.SetBool(AnimationString.isRunning, value);
             _isRunning = value;
-            if (value)
-            {
-                _stepAudioSource.Play();
-            }
-            else
-            {
-                _stepAudioSource.Stop();
-            }
         }
     }
 
@@ -74,6 +66,16 @@ public class PlayerController : Singleton<PlayerController>
         if (!_playerHealth.IsAlive) return;
 
         IsRunning = _rb.linearVelocity.x != 0;
+        
+        if (IsRunning && _directionChecker.IsGrounded && !_stepAudioSource.isPlaying)
+        {
+            _stepAudioSource.Play();
+        }
+        else if (!IsRunning || !_directionChecker.IsGrounded)
+        {
+            _stepAudioSource.Stop();
+        }
+
         if (IsRunning && _directionChecker.IsGrounded)
             _dustStep.Play();
 

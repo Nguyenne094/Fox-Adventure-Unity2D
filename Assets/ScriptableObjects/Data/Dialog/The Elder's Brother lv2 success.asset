@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad728c5b5bfd65548851d0855f9f68dc, type: 3}
+  m_Name: The Elder's Brother lv2 success
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: Good job bro =))
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 1
+  - speakerName: "G\u1EA5u b\xE9o tri th\u1EE9c"
+    text: "Gi\u1EDD ng\u01B0\u1EDDi c\xF3 th\u1EC3 \u0111i qua c\xE1nh c\u1ED5ng
+      \u0111\u01B0\u1EE3c r\u1ED3i"
+    animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
+    autoNextDelay: 3
+    textEffect: 1

@@ -1,12 +1,10 @@
-using System.Collections;
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace UIEffect
 {
     [RequireComponent(typeof(Collider2D))]
-    [RequireComponent(typeof(SpriteRenderer))]
     public class FadeOnLayerIn : MonoBehaviour
     {
         [SerializeField] private LayerMask layer;
@@ -15,11 +13,13 @@ namespace UIEffect
 
         private Collider2D col;
         private SpriteRenderer spriteRenderer;
+        private Tilemap tilemap;
 
         void Awake()
         {
             col = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            tilemap = GetComponent<Tilemap>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +27,12 @@ namespace UIEffect
             if ((layer & (1 << other.gameObject.layer)) != 0)
             {
                 StopAllCoroutines();
-                spriteRenderer.DOFade(0f, fadeDuration).SetEase(fadeEase);
+                spriteRenderer?.DOFade(0f, fadeDuration).SetEase(fadeEase);
+                if(tilemap == null) return;
+                DOVirtual.Float(1, 0, fadeDuration, value =>
+                {
+                    tilemap.color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, value);
+                }).SetEase(fadeEase);
             }
         }
     }

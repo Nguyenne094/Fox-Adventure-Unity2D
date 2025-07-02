@@ -11,6 +11,11 @@ namespace Quest
         private bool isRunning;
         public float ElapsedTime { get; private set; }
 
+        void Start()
+        {
+            StartTimer();
+        }
+
         public void StartTimer()
         {
             ElapsedTime = 0f;
