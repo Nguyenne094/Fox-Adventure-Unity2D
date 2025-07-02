@@ -79,11 +79,12 @@ namespace Manager
             audioMixer.SetFloat("sfx", Mathf.Log10(value)*20);
         }
 
-        public void PlaySFX(AudioClip audioClip, float volume)
+        public void PlaySFX(AudioClip audioClip, float volume = 1)
         {
             AudioSource audioSource = audioSourcePool.Get();
             audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Master")[2];
             audioSource.clip = audioClip;
+            audioSource.volume = volume;
             StartCoroutine(ReleaseAudioSourceToPoolAfter(audioSource, audioSource.clip.length));
         }
 

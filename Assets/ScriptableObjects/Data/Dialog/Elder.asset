@@ -16,34 +16,44 @@ MonoBehaviour:
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
     text: "Ch\xE0o m\u1EEBng con \u0111\u1EBFn v\u1EDBi ng\xF4i l\xE0ng c\u1EE7a
       ch\xFAng ta."
-    voiceClip: {fileID: 0}
     animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
     text: "Th\u1EDDi gian g\u1EA7n \u0111\xE2y... c\xF3 \u0111i\u1EC1u g\xEC \u0111\xF3
       kh\xF4ng \u1ED5n trong khu r\u1EEBng ph\xEDa T\xE2y."
-    voiceClip: {fileID: 0}
     animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
     text: "N\u1EBFu con \u0111\u1EE7 d\u0169ng c\u1EA3m, ta c\xF3 m\u1ED9t vi\u1EC7c
       mu\u1ED1n nh\u1EDD."
-    voiceClip: {fileID: 0}
     animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
     autoNextDelay: 5
     textEffect: 0
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
     text: "H\xE3y ti\xEAu di\u1EC7t to\xE0n b\u1ED9 th\xFA hoang d\xE3 \u0111\u1EC3
       b\u1EA3o v\u1EC7 khu r\u1EEBng"
-    voiceClip: {fileID: 0}
     animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
     autoNextDelay: 5
     textEffect: 4
   - speakerName: "Tr\u01B0\u1EDFng l\xE0ng"
     text: "\u0110i \u0111i !!!"
-    voiceClip: {fileID: 0}
     animationTrigger: 
+    voiceClip: {fileID: 8300000, guid: d98b065e500a73045a0353ba49ba5326, type: 3}
+    voiceVolume: 1
+    stopVoideOnFinish: 1
     autoNextDelay: 5
-    textEffect: 0
+    textEffect: 1

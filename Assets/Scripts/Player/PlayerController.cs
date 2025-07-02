@@ -1,3 +1,4 @@
+using Manager;
 using Script.Player;
 using UI;
 using UnityEngine;
@@ -10,10 +11,14 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Animator _animator;
     [SerializeField] private DirectionChecker _directionChecker;
-    [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private PlayerTouchController _playerTouchController;
     [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private PlayerPresenter _playerPresenter;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _stepAudioSource;
+    [SerializeField] private AudioClip _jumpSound;
+    [SerializeField, Range(0, 1)] private float _jumpSoundVolume = 1f;
 
     [Header("Settings")]
     [SerializeField] private float speed = 10f;
@@ -35,6 +40,14 @@ public class PlayerController : Singleton<PlayerController>
         {
             _animator.SetBool(AnimationString.isRunning, value);
             _isRunning = value;
+            if (value)
+            {
+                _stepAudioSource.Play();
+            }
+            else
+            {
+                _stepAudioSource.Stop();
+            }
         }
     }
 
@@ -60,7 +73,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (!_playerHealth.IsAlive) return;
 
-        IsRunning = _playerTouchController.MoveLeftButtonClicked || _playerTouchController.MoveRightButtonClicked;
+        IsRunning = _rb.linearVelocity.x != 0;
         if (IsRunning && _directionChecker.IsGrounded)
             _dustStep.Play();
 
@@ -83,7 +96,7 @@ public class PlayerController : Singleton<PlayerController>
         if (_directionChecker.IsGrounded)
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
-            _jumpSound?.Play();
+            SoundManager.Instance.PlaySFX(_jumpSound, _jumpSoundVolume);
             _animator.SetTrigger(AnimationString.isJumping);
         }
     }
@@ -101,5 +114,13 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (horizontalInput > 0 && !IsFacingRight) IsFacingRight = true;
         else if (horizontalInput < 0 && IsFacingRight) IsFacingRight = false;
+    }
+
+    public void StopMovement()
+    {
+        _rb.linearVelocityX = 0;
+        _playerTouchController.MoveLeftTouchExit();
+        _playerTouchController.MoveRightTouchExit();
+        IsRunning = false;
     }
 }

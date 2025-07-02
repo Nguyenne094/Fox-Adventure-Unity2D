@@ -1,23 +1,23 @@
 # ninja log v5
-11	4393	7730132443070961	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3e5d69530044e367
-2509	5271	7730132462429491	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dd6d7d48d8228cf0
-286	4443	7730132450217446	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	bd122895b73fc353
-27	4594	7730132454076544	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	89e304fdfbe3f1b0
-4350	5056	7730132460348574	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	93185ed6e6b8dad3
-379	5290	7730132462671536	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	358fd3dfc6d57384
-305	4444	7730132451366773	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d70ccc08bd7b3f6b
-55	4395	7730132437369007	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	37b9981f44ed3785
-5056	5627	7730132465936785	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libswappywrapper.so	47621ea2c6aed26
-2577	6156	7730132471389661	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	121b7e80e3705447
-6156	6437	7730132474037621	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libgame.so	9fd91112cd76e6de
-9	2670	7730531906406459	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	89e304fdfbe3f1b0
+447	3198	7730531912378539	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dd6d7d48d8228cf0
 20	2672	7730531898981624	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3e5d69530044e367
-36	2674	7730531895016890	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	37b9981f44ed3785
 49	2675	7730531898708329	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	bd122895b73fc353
-426	2677	7730531905285676	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d70ccc08bd7b3f6b
+9	2670	7730531906406459	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	89e304fdfbe3f1b0
 1684	2917	7730531909648959	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	93185ed6e6b8dad3
 1532	3174	7730531912159799	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	358fd3dfc6d57384
-447	3198	7730531912378539	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dd6d7d48d8228cf0
+426	2677	7730531905285676	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d70ccc08bd7b3f6b
+36	2674	7730531895016890	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	37b9981f44ed3785
 2917	3399	7730531914332187	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libswappywrapper.so	47621ea2c6aed26
 1571	3473	7730531915149500	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	121b7e80e3705447
 3474	3727	7730531917606829	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libgame.so	9fd91112cd76e6de
+12	15188	7731546734173856	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3e5d69530044e367
+64	15190	7731546733942757	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	37b9981f44ed3785
+434	15191	7731546744803145	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	89e304fdfbe3f1b0
+462	15193	7731546738591617	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	bd122895b73fc353
+2617	15194	7731546744743138	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dd6d7d48d8228cf0
+4369	15196	7731546808127590	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d70ccc08bd7b3f6b
+7309	15197	7731546810074353	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	358fd3dfc6d57384
+12204	18545	7731546846057329	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	93185ed6e6b8dad3
+8973	20168	7731546860868106	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	121b7e80e3705447
+18546	26647	7731546923799286	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libswappywrapper.so	47621ea2c6aed26
+20168	27364	7731546930846249	D:/Unity Project/Fox Adventure 2D/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4f4l6z63/obj/arm64-v8a/libgame.so	9fd91112cd76e6de

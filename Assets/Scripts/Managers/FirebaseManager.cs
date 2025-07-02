@@ -41,6 +41,12 @@ public class FirebaseManager : Singleton<FirebaseManager>
         });
     }
 
+    public void Start() {
+        Firebase.Messaging.FirebaseMessaging.TokenReceived += OnTokenReceived;
+        Firebase.Messaging.FirebaseMessaging.MessageReceived += OnMessageReceived;
+    }
+
+
     public async void SetupOnFirebaseInitialized()
     {
         var userId = FirebaseAuth.DefaultInstance.CurrentUser?.UserId;
@@ -165,5 +171,12 @@ public class FirebaseManager : Singleton<FirebaseManager>
                 .Child("active")
                 .SetValueAsync(isActive);
         }
+    }
+    public void OnTokenReceived(object sender, Firebase.Messaging.TokenReceivedEventArgs token) {
+        Debug.Log("Received Registration Token: " + token.Token);
+    }
+
+    public void OnMessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e) {
+        Debug.Log("Received a new message from: " + e.Message.From);
     }
 }

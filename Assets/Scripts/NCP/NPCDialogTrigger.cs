@@ -67,6 +67,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         isDialogueActive = false;
         uiController.Hide();
+        audioSource?.Stop();
         onDialogueComplete?.Invoke();
     }
 
@@ -85,6 +86,8 @@ public class NPCDialogueTrigger : MonoBehaviour
         if (audioSource && line.voiceClip)
         {
             audioSource.clip = line.voiceClip;
+            audioSource.volume = line.voiceVolume;
+            audioSource.Stop();
             audioSource.Play();
         }
     }
@@ -129,6 +132,8 @@ public class NPCDialogueTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
+        if (line.stopVoideOnFinish && audioSource.isPlaying)
+            audioSource.Stop();
         isShowingFullLine = true;
 
         if (line.autoNextDelay >= 0f)
