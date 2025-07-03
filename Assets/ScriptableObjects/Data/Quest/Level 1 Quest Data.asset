@@ -15,6 +15,6 @@ MonoBehaviour:
   questId: level1_easy
   type: 0
   description: "Easy nh\xE9"
-  maxTime: 60
+  maxTime: 360
   maxHits: 99
   requiredItemCount: 3

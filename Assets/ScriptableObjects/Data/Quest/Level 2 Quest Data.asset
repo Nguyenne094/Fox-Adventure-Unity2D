@@ -17,4 +17,4 @@ MonoBehaviour:
   description: "D\u1EC5 qu\xE1 c\xF2n g\xEC"
   maxTime: 120
   maxHits: 99
-  requiredItemCount: 3
+  requiredItemCount: 0

@@ -17631,6 +17631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2007333622}
   - {fileID: 50669196}
   - {fileID: 1908978118}
   - {fileID: 179662553}
@@ -17643,7 +17644,6 @@ Transform:
   - {fileID: 309107385}
   - {fileID: 493219768}
   - {fileID: 807555167}
-  - {fileID: 2007333622}
   - {fileID: 2126543515}
   - {fileID: 1532377385}
   m_Father: {fileID: 79063046}
@@ -21101,7 +21101,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -21138,7 +21138,7 @@ PrefabInstance:
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 3073929045187649699}
+      objectReference: {fileID: 1222583920}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
@@ -21157,7 +21157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: UpdateLeaderboard
+      value: StopMovement
       objectReference: {fileID: 0}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -21173,7 +21173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: Manager.LeaderboardManager, Assembly-CSharp
+      value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -6468762775581735089, guid: cf9b595c3b7414e489eadf6644ed9f7b, type: 3}
       propertyPath: onCollected.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
