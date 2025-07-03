@@ -4,7 +4,7 @@ A charming 2D platformer game built with Unity, featuring a fox character on an 
 
 ## 🎮 Game Preview
 
-[![Watch Gameplay Video](https://img.youtube.com/vi/_stCtAJZTIc/0.jpg)](https://www.youtube.com/watch?v=_stCtAJZTIc)
+[![Watch Gameplay Video](https://img.youtube.com/vi/e0ZlQKl5kMc/0.jpg)](https://youtu.be/e0ZlQKl5kMc)
 
 ## 🛠️ Technical Details
 
