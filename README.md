@@ -26,7 +26,6 @@ The project is organized into the following main directories:
 - **[Assets/Art/](./Assets/Art/)** - Game sprites, animations, and visual assets
 - **[Assets/Audio/](./Assets/Audio/)** - Sound effects and background music
 - **[Assets/Level/](./Assets/Level/)** - Level scenes and prefabs
-- **[Assets/Docs/](./Assets/Docs/)** - Project documentation and diagrams
 
 ## 📋 Features
 
