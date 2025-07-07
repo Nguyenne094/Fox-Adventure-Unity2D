@@ -110,7 +110,6 @@ Firebase/Plugins
 *.rar
 *.7z
 *.tar.gz
-*.tgz
 
 FirebaseCppApp-12_10_0.bundle
 FirebaseCppApp-12_10_0.so
